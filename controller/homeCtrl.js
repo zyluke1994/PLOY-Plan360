@@ -1,5 +1,7 @@
 app.controller('homeCtrl', function ($scope, $http, $compile, $rootScope, $location, $timeout,NgTableParams) {
-
+    if ($rootScope.globals.currentUser.role === "admin") {
+        $scope.isAdmin = true;
+    };
     $http.get("../api/attractions/getAttraction.php")
         .then(function (response) {
             $scope.attractionLength = response.data.length;
@@ -12,8 +14,14 @@ app.controller('homeCtrl', function ($scope, $http, $compile, $rootScope, $locat
         });
     $http.get("../api/plans/getPlans.php")
         .then(function (response) {
+            console.log(response);
+
             $scope.planLength = response.data.length;
+            $scope.myPlanListAll = response.data;
+
             $scope.userLogin = $rootScope.globals.currentUser.username;
+            $scope.tableParamsAll = new NgTableParams({}, { dataset: $scope.myPlanListAll });
+
         });
     console.log($rootScope.globals.currentUser.username);
     $http.get("../api/plans/getPlans.php", {
@@ -29,7 +37,6 @@ app.controller('homeCtrl', function ($scope, $http, $compile, $rootScope, $locat
             }else{
                 console.log("yes plan");
                 $scope.myPlanList = response.data;
-                $scope.tableData = [{name: "Moroni", age: 50} /*,*/];
                 $scope.tableParams = new NgTableParams({}, { dataset: $scope.myPlanList});
             
                 
@@ -73,6 +80,8 @@ app.controller('homeCtrl', function ($scope, $http, $compile, $rootScope, $locat
         console.log("load");
         $location.url('/viewPlan/'+id);
       };
+     
+   
     // function loadPlanToPlanCtrl($scope,planID) {
     //     console.log("loadPlanToPlanCtrl");
     //     $rootScope.planIDFromHome = planID;

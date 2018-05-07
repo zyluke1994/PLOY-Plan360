@@ -341,7 +341,17 @@ fieldset[disabled] .btn-sideOption.focus {
     width: 100%;
     height: 100%;
   }
+.homeTab.uib-tab.active a,.homeTab.uib-tab.active a:focus, .homeTab.uib-tab.active a:hover {
+    background-color:#605885;
+    color:white;
+    text-align:left;
 
+  }
+  
+.homeTab.uib-tab a,.homeTab.uib-tab a:focus, .homeTab.uib-tab a:hover {
+  background-color:white;
+
+}
 /*Hover*/
 /*@media (min-width: 768px){
 .navbar-default .navbar-nav > li.dropdown:hover > a, 
