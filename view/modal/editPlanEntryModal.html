@@ -1,0 +1,237 @@
+<div class="modal-header">
+    <div class="row">
+        <div class="col-md-7">
+            <h3 class="modal-title" id="modal-title">Edit Attraction to Plan {{$ctrl.planSelected.planID}}</h3>
+        </div>
+        <!--<div class="col-md-2">
+            <label>ID: {{$ctrl.attraction.attractionID}} </label>
+        </div>-->
+
+
+    </div>
+
+</div>
+<div class="modal-body" id="modal-body">
+    <!--<ul>
+        <li ng-repeat="attraction in $ctrl.attraction">
+            <a href="#" ng-click="$event.preventDefault(); $ctrl.selected.item = item">{{ item }}</a>
+        </li>
+    </ul>-->
+    <!--Selected: <b>{{$ctrl.attraction.attractionName}}</b>-->
+
+    <div>
+        <FIELDSET>
+            <div>
+                <!-- Example row of columns -->
+                <form name="entryForm" id="database-form">
+                    <!-- <div class="row">
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="selectCustomer">Select Customer (ID - {{$ctrl.customerSelected.customerID}})</label>
+
+                                <input type="text" id="selectCustomer" name="selectCustomer" ng-model="$ctrl.customerSelected" ng-value="customerSelected.fullName"
+                                    uib-typeahead="customer as customer.fullName for customer in $ctrl.customerList | filter:$viewValue | limitTo:8"
+                                    class="form-control" autofocus>
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="selectPlan">Select Plan </label>
+                                <select class="form-control" ng-model="$ctrl.planSelected" ng-click="$ctrl.updateSelectedCustomer()" ng-options="planSelected as (planSelected.planID +' - '+ planSelected.tripName) for planSelected in $ctrl.filteredPlanList"
+                                    id="selectPlan" name="selectPlan">
+    <option value=""></option>
+</select>
+
+                            </div>
+                        </div>
+
+
+                    </div> -->
+                    <hr>
+                    <div class="row">
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="inputAttractionID">Attraction ID</label>
+                                <input type="text" ng-model="$ctrl.attraction.attractionID" ng-init="$ctrl.attraction.inputAttractionID" class="form-control"
+                                    id="inputAttractionID" name="inputAttractionID" disabled>
+                            </div>
+
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label for="inputName">Attraction Name</label>
+                                <input type="text" ng-model="$ctrl.attraction.attractionName" ng-init="$ctrl.attraction.attractionName" class="form-control"
+                                    id="inputName" name="inputName" disabled>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+             
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label> Memo</label>
+                            <textarea type="text" ng-model="$ctrl.attraction.planEntrymemo" class="form-control" id="inputMemo" name="inputMemo" rows="2"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <!--<div class="col-md-1">
+</div>-->
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label for="inputVisitStart">Visit Start: </label> {{ $ctrl.attraction.visitStart | date:'yyyy-MM-dd hh:mm
+                                a' }}
+                                <!--<datetimepicker data-ng-model="dateVisitStart" data-datetimepicker-config="{startView:'day', minView:'minute', renderOn: 'end-date-changed' }"
+                                    data-on-set-time="startDateOnSetTime()" data-before-render="startDateBeforeRender($dates)"></datetimepicker>-->
+                                <datetimepicker data-ng-model="$ctrl.attraction.visitStart" data-datetimepicker-config="{startView:'day', minView:'minute' }" data-on-set-time=""
+                                    data-before-render=""></datetimepicker>
+                            </div>
+
+                        </div>
+                        <div class="col-md-2">
+                                <div class="form-group">
+                                        <div class="row">
+                                            <strong>Duration</strong>
+                                        </div>
+                                    <div class="row">
+                                        <button type="button" class="btn btn-block btn-sm btn-default" ng-click="$ctrl.addEndTime(0.5)">0.5 HR</button>
+                                    </div>
+                                    <div class="row">
+                                        <button type="button" class="btn btn-block btn-sm btn-default" ng-click="$ctrl.addEndTime(1)">1 HR</button>
+                                    </div>
+                                    <div class="row">
+                                        <button type="button" class="btn btn-block btn-sm btn-default" ng-click="$ctrl.addEndTime(1.5)">1.5 HR</button>
+                                    </div>
+                                    <div class="row">
+                                        <button type="button" class="btn btn-block btn-sm btn-default" ng-click="$ctrl.addEndTime(2)">2 HR</button>
+                                    </div>
+                                    <div class="row">
+                                        <button type="button" class="btn  btn-block btn-sm btn-default" ng-click="$ctrl.addEndTime(2.5)">2.5 HR</button>
+                                    </div>
+                                    <div class="row">
+                                        <button type="button" class="btn btn-block btn-sm btn-default" ng-click="$ctrl.addEndTime(3)">3 HR</button>
+                                    </div>
+                                    <div class="row">
+                                            <button type="button" class="btn btn-block btn-sm btn-default" ng-click="$ctrl.addEndTime(6)">6 HR</button>
+                                    </div>
+                                    <div class="row">
+                                            <button type="button" class="btn btn-block btn-sm btn-default" ng-click="$ctrl.addEndTime(12)">12 HR</button>
+                                    </div>
+                                    <div class="row">
+                                            <button type="button" class="btn btn-block btn-sm btn-default" ng-click="$ctrl.addEndTime(24)">24 HR</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label for="inputVisitEnd">Visit End: </label> {{ $ctrl.attraction.visitEnd | date:'yyyy-MM-dd hh:mm a'
+                                }}
+                                <datetimepicker data-ng-model="$ctrl.attraction.visitEnd" data-datetimepicker-config="{startView:'day', minView:'minute' }" data-on-set-time=""
+                                    data-before-render=""></datetimepicker>
+                                <!--<datetimepicker data-ng-model="dateVisitEnd" data-datetimepicker-config="{startView:'day', minView:'minute', renderOn: 'start-date-changed' }"
+                                    data-on-set-time="endDateOnSetTime()" data-before-render="endDateBeforeRender($dates)"></datetimepicker>-->
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!--<div class="row">
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="inputBy">Inputted By</label>
+                                <input type="text" ng-model="inputBy" class="form-control" id="inputBy" name="inputBy">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="inputCrosscheck">Cross-Checked By</label>
+                                <input type="text" ng-model="crossCheck" class="form-control" id="inputCrosscheck" name="inputCrosscheck">
+                            </div>
+                        </div>
+
+                    </div>-->
+                    <div class="row">
+                            <div class="col-md-12">
+                                <!-- <label for='uploaded_file'>Select A File To Upload:</label>
+                                    
+                                    <input type="file" ng-model="$ctrl.fileAttached" name="uploaded_file">
+                                     -->
+                                <!-- <div class="form-group">
+                                            <label for="inputSubject">Local Path to Plan</label>
+                                            <input type="text" ng-model="$ctrl.localPath" class="form-control" id="localPath" name="localPath">
+                                        </div> -->
+            
+                                <p>Reservation Confirmation: <a target="_blank" href="../assets/Uploads/reservation/{{$ctrl.attraction.reservationFileLocation}}">{{$ctrl.attraction.reservationFileLocation}}</a> <i ng-click="$ctrl.clearConfirmation()" class="glyphicon glyphicon-remove"></i></p> 
+                                <br>
+                                <button ngf-select="$ctrl.uploadFiles($files)" multiple accept="*">Select Files</button>
+                                <br>
+                                <br>Files:
+                                <ul>
+                                    <li ng-repeat="f in $ctrl.files" style="font:smaller">
+                                        {{f.name}}
+                                    </li>
+                                </ul>
+                                <span class="progress" ng-show="$ctrl.progress >= 0">
+                                    <div style="width:{{$ctrl.progress}}%" ng-bind="$ctrl.progress + '%'"></div>
+                                </span> {{$ctrl.errorMsg}}
+            
+                            </div>
+                        </div>
+
+                    <div class="row">
+                        <div class="col-md-9">
+                            <strong>Please double check all information above before submit.</strong>
+                            <br>
+                            <div class="success" style="display:none">
+                                <p>Success!</p>
+                            </div>
+                            <div class="error" style="display:none">
+                                <p>Error!</p>
+                            </div>
+
+                        </div>
+                        <div class="col-md-3" style="text-align:right">
+                            <span>             
+                <button class="btn btn-primary" type="button" ng-click="$ctrl.updatePlanEntry()">Save</button>
+                <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+        </span>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div id="form-messages">
+                            <p>{{ $ctrl.alertMessage}}</p>
+                        </div>
+                    </div>
+                    <br>
+
+
+
+
+                </form>
+
+            </div>
+            <!-- /container -->
+        </FIELDSET>
+    </div>
+
+
+</div>
+
+
+
+<div class="modal-footer">
+
+</div>

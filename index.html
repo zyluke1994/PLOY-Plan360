@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="plan360">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Plan360</title>
+    <script>
+        document.write('<base href="' + document.location + '" />');
+    </script>
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="fonts/TravelIcon/flaticon.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="bower_components/components-font-awesome/css/font-awesome.css" />
+    <!--<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css">-->
+    <link rel="stylesheet" href="bower_components/angular-advanced-searchbox/dist/angular-advanced-searchbox.min.css">
+    <link rel="stylesheet" href="bower_components/angular-bootstrap/ui-bootstrap-csp.css">
+    <link rel="stylesheet" href="bower_components/angular-bootstrap-datetimepicker-1.1.4/src/css/datetimepicker.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/angular-ui-grid/ui-grid.min.css">
+    <link rel="stylesheet" href="bower_components/bootstrap-duration-picker/dist/bootstrap-duration-picker.css" />
+    <link rel="stylesheet" href="bower_components/fullcalendar/dist/fullcalendar.css" />
+    <link rel="stylesheet" href="bower_components/image-picker-master/image-picker/image-picker.css" />
+    <link rel='stylesheet' href='bower_components/textAngular/dist/textAngular.css'>  
+    <link rel='stylesheet' href='bower_components/angular-confirm/dist/angular-confirm.min.css'>  
+    <link rel="stylesheet" href="https://unpkg.com/ng-table@2.0.2/bundles/ng-table.min.css">
+
+    <link href="bower_components/angular-xeditable/dist/css/xeditable.css" rel="stylesheet">
+    <link href="https://cdn.quilljs.com/1.3.2/quill.snow.css" rel="stylesheet">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Assistant:400,600,700" rel="stylesheet">
+
+    <!--<link href="bower_components/pure-angular-advanced-searchbox/dist/styles/main.css" rel="stylesheet">-->
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="css/styles.css" />
+
+    <style>
+
+    </style>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top " role="navigation" ng-if="location.path() !== '/login'">
+        <div class="container" ng-controller="NavCtrl">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" style="color:white" href="/#/home"> <img src="assets/ploy_compass.png" style="max-width:15px; margin-top:-5px;">Plan360<span style="font-size:10px; color:orange"> by Ploy</span></a>
+
+
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div id="navbar" class="collapse navbar-collapse ">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown" >
+                        <!--To Delete Auto Dropdown, delete 'Hover' session in CSS -->
+
+                        <a class="dropdown-toggle" data-toggle="dropdown" href=""> <span  style="font-size:30px;" class="flaticon-routes"></span> Plan
+                        <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li ng-show="isAdmin" ng-class="navClass('inputPlan')"><a href='' ng-click="loadInputPlan()"> <span class="flaticon-map" style="font-size:20px;"></span> New Plan</a></li>
+                            <li ng-show="isAdmin" ng-class="navClass('viewPlan')"><a href='' ng-click="loadViewPlan()"><span class="flaticon-map-12" style="font-size:20px;"></span> View Plans</a></li>
+                            <li ng-show="isAdmin" class="divider"></li>
+                            <li ng-class="navClass('destinationInfoTemplate')"><a href='' ng-click="loadDestinationInfoTemplate()"><span class="flaticon-placeholder-13" style="font-size:20px;"></span> Destination Info Templates</a></li>
+                            
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href=""> <span  style="font-size:30px;" class="flaticon-hot-air-balloon"></span> Attraction 
+                        <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li ng-class="navClass('inputAttraction')"><a href='' ng-click="loadInputAttraction()"><span  style="font-size:20px;" class="flaticon-placeholder"></span> New Attraction</a></li>
+                            <li ng-class="navClass('viewAttraction')"><a href='' ng-click="loadViewAttraction()"><span  style="font-size:20px;" class="flaticon-window"></span> View Attraction</a></li>
+                        </ul>
+                    </li>
+                    <li ng-class="navClass('clientOnboard')"><a href='' ng-click="loadClientOnboard()"> <span  style="font-size:30px;" class="flaticon-key"></span> Client</a></li>
+                   
+                    <li>
+
+                        <li ng-if="userRole==='admin'">
+                            <div class="btn-group" uib-dropdown auto-close="disabled" is-open="status.isopen">
+                                <button type="button" class="btn btn-sm btn-info navbar-btn" uib-dropdown-toggle ng-disabled="disabled">Issue Activation Key</button>
+                                <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+                                    <div style="margin:10px;">
+                                        <div class="form-group">
+                                            <label for="inputCategory">Select Group:</label>
+                                            <select class="form-control" ng-model="roleGroup" id="roleGroup" name="roleGroup">
+                    <option value="admin">Admin</option>
+                    <option value="basic">Basic</option>
+                  </select>
+                                        </div>
+
+                                        <button style="width:100%;" ng-click="generateKey(roleGroup)" class="btn btn-success btn-sm">Issue</button>
+                                        <div class="well" style="padding:10px;" ng-hide="activationKeyWell">Issued Key:
+                                            <br>
+                                            <strong> {{randomActivationKey}}</strong>
+
+                                        </div>
+                                    </div>
+                                </ul>
+                            </div>
+                        </li>
+
+
+                    </li>
+                    <li>
+                            <li ng-if="userRole==='admin'">
+                                <div style="margin-left:10px;" class="btn-group" uib-dropdown auto-close="disabled" is-open="status.isopen">
+                                    <button type="button" class="btn btn-sm btn-primary navbar-btn" style="color:white" uib-dropdown-toggle ng-disabled="disabled">
+                                                Pending Review <span class="badge">{{pendingReviewList.length}}</span>
+                                            </button>
+    
+                                            
+                                    <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+                                        <div style="overflow-y:scroll;margin:10px; width:300px; height:500px">
+                                            <ul class="list-group">
+                                                <li class="list-group-item" ng-repeat="item in pendingReviewList">
+                                                    <div style="overflow-y:scroll">
+                                                        <span style="font-size:9pt">{{item.reviewID}} </span>
+                                                        <br> Plan ID: {{item.planToReviewID}} | {{item.planName}}
+                                                        <br> Requested Date: {{item.requestedDate}}
+                                                        <br> Requester: {{item.requester}}
+                                                        <br> Client: {{item.clientID}} - {{item.clientName}}
+                                                        <br> Status: <span style="color:orangered">Pending Review</span>
+                                                    </div>
+    
+    
+                                                </li>
+    
+                                            </ul>
+    
+    
+                                        </div>
+                                    </ul>
+                                </div>
+                            </li>
+                        </li>
+                </ul>
+            
+                <ul class="nav navbar-nav navbar-right">
+                   
+                        <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href=""> <span    style="font-size:20px;" class="glyphicon glyphicon-user"></span> {{userFullname}}
+                                </a>
+                                <ul class="dropdown-menu" style="width:300px;">
+                                 
+                                    <div style="color:white; padding:10px;">
+                                        <strong>User Profile</strong>
+                                        <br>
+                                        <p>Name: {{userFullname}} </p>
+                                        <p>Username: {{userLogin}} </p>
+                                        <p>Email: {{userEmail}} </p>
+                                        <p>Role: {{userRole}}</p>
+                                        </div>
+                                    <li class="divider"></li>
+                                    <li ng-class="navClass('logout')"><a href='' ng-click="logout()"> Log Out</a></li>
+                                </ul>
+                            </li>
+                    <!-- <li ng-class="navClass('logout')"><a href='' ng-click=""> <span   class="glyphicon glyphicon-user"></span> Hi {{userFullname}} - {{userRole}}</a></li> -->
+
+                </ul>
+            </div>
+
+
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+    <!-- Page Content -->
+
+    <div class="container">
+
+        <div ng-view></div>
+
+    </div>
+
+ 
+    <!-- /.row -->
+
+    </div>
+    <footer class="footer navbar-fixed-bottom">
+            <div class="container">
+              <p class="text-muted">Policies & Documents： <a href="assets/policies/Planner_Agreement.pdf">Planner Agreement</a> | <a href="assets/policies/Contract_Planner_Traveller.pdf">Traveler Contract</a> | <a href="assets/policies/Planner_Guide.pdf">Planner Guide</a> | <a href="assets/policies/Cancellation_Policy_Planner.pdf">Cancellation Policy</a> | <a href="https://www.ploytrip.com/en/infos/terms">Terms and Conditions</a> | <a href="https://www.ploytrip.com/en/infos/privacy">Privacy Policy</a> </p>
+            </div>
+          </footer>
+    <!-- /.container -->
+</body>
+<!-- jQuery Version 1.11.1 -->
+<script src="js/jquery.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-cookies.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-animate.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-aria.min.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+
+<!--<script src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>-->
+<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+<!-- Angular Material Javascript now available via Google CDN; version 0.9.4 used here -->
+<!--<script src="//ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.js"></script>-->
+<script src="js/jquery.js"></script>
+<script src="script.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="js/bootstrap.js"></script>
+
+<script src="bower_components/lodash/lodash.js"></script>
+<script src="bower_components/pure-angular-advanced-searchbox/dist/scripts/ui.core.js"></script>
+<script src="bower_components/angular-advanced-searchbox/dist/angular-advanced-searchbox-tpls.min.js"></script>
+<script src="bower_components/moment/moment.js"></script>
+<script src="bower_components/angular-bootstrap-datetimepicker-1.1.4/src/js/datetimepicker.js"></script>
+<script src="bower_components/angular-bootstrap-datetimepicker-1.1.4/src/js/datetimepicker.templates.js"></script>
+<script src="bower_components/dd-text-collapse/dd-text-collapse.js"></script>
+<script src="bower_components/ng-pageslide-master/dist/angular-pageslide-directive.min.js"></script>
+<script src="bower_components/ng-file-upload/ng-file-upload.min.js"></script>
+<script src="bower_components/angular-sticky/dist/angular-sticky.min.js"></script>
+
+<script type="text/javascript" src="bower_components/fullcalendar/dist/fullcalendar.min.js"></script>
+<script type="text/javascript" src="bower_components/fullcalendar/dist/gcal.js"></script>
+<script type="text/javascript" src="bower_components/angular-ui-calendar/src/calendar.js"></script>
+
+<script src="bower_components/angular-ui-grid/ui-grid.min.js"></script>
+<script src="https://unpkg.com/custom-input@0.2.0/dist/custom-input.js"></script>
+<script src="https://unpkg.com/angular-datetime-input@5.1.0/dist/datetime.js"></script>
+<script src="bower_components/underscore/underscore.js"></script>
+<script src="bower_components/image-picker-master/image-picker/image-picker.min.js"></script>
+<script src="bower_components/pdfmake/build/pdfmake.min.js"></script>
+<script src="bower_components/pdfmake/build/vfs_fonts.js"></script>
+<script src="bower_components/angular-xeditable/dist/js/xeditable.js"></script>
+<script src="https://cdn.quilljs.com/1.3.2/quill.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ng-quill/3.4.0/ng-quill.min.js"></script>
+<script src='bower_components/textAngular/dist/textAngular-rangy.min.js'></script>
+<script src='bower_components/textAngular/dist/textAngular-sanitize.min.js'></script>
+<script src='bower_components/textAngular/dist/textAngular.min.js'></script>
+<script src='bower_components/angular-confirm/dist/angular-confirm.min.js'></script>
+<script src='bower_components/pdfjs/dist/pdf.js'></script>
+<script src='bower_components/pdfjs/dist/pdf.worker.js'></script>
+<script src='js/base64-img.js'></script>
+
+
+<script src="service/sendEmailService.js"></script>
+
+<script src="controller/inputAttractionCtrl.js"></script>
+<script src="controller/inputPlanCtrl.js"></script>
+<script src="controller/clientOnboardCtrl.js"></script>
+<script src="controller/viewAttractionCtrl.js"></script>
+<script src="controller/loginCtrl.js"></script>
+<script src="controller/homeCtrl.js"></script>
+<script src="controller/modal/viewAttractionModalCtrl.js"></script>
+<script src="controller/modal/addToPlanModalCtrl.js"></script>
+<script src="controller/modal/editPlanModalCtrl.js"></script>
+<script src="controller/modal/sendEmailModalCtrl.js"></script>
+<script src="controller/modal/editPlanEntryModalCtrl.js"></script>
+<script src="controller/destinationInfoTemplateCtrl.js"></script>
+<script src="controller/viewPlanCtrl.js"></script>
+<script src="controller/viewPlanCalendarCtrl.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>
+<script src="https://jvandemo.github.io/angularjs-google-maps/dist/angularjs-google-maps.js"></script>
+<script src="https://unpkg.com/ng-table@2.0.2/bundles/ng-table.min.js"></script>
+
+
+
+
+
+
+
+</html>

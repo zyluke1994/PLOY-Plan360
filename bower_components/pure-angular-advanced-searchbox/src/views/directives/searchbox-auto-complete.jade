@@ -1,0 +1,18 @@
+div(
+  class="paasb-auto-complete-container",
+  ng-hide="!showSuggestions"
+)
+  p Most Popular Suggestions
+  ul
+    li(
+      ng-repeat="suggestion in autoSuggestions",
+      ng-click="takeAutoComplete(suggestion.plainTerm);"
+    )
+      span(
+        class="suggestion-value", 
+        ng-bind-html="Utils.trust(suggestion.term)"
+      )
+      span(
+        class="suggestion-count",
+        ng-bind-html="Utils.trust(' - Suggested <b>' + suggestion.suggestedCount + '</b> times')"
+      )

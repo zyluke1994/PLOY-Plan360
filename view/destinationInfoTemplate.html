@@ -1,0 +1,283 @@
+<div>
+
+
+
+    <FIELDSET>
+        <div class="container" ng-controller="destinationInfoTemplateCtrl">
+            <!-- Example row of columns -->
+            <h2> Template</h2>
+            <div class="input-group">
+                    <input ng-blur="importTemplate(templateSelected)" type="text" id="importTemplate" name="importTemplate" ng-model="templateSelected"
+                        ng-value="template" uib-typeahead="template as template.destinationCountry + ' (' + template.destinationCity + ')' for template in templateList | filter:$viewValue | limitTo:8"
+                        class="form-control" placeholder="Import From Template">
+                    <div class="input-group-btn">
+                        <button class="btn btn-default" ng-click="importTemplate(templateSelected)" type="button">
+                                  <i class="glyphicon glyphicon-cloud-download"></i>
+                                  Load/Edit Template
+                                </button>
+                    </div>
+                    
+                </div>
+                <hr>
+            <form name="entryForm" id="database-form">
+                <div class="row">
+
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="city">City</label>
+                            <input type="text" ng-model="activeTemplate.destinationCity" class="form-control" id="city" name="city" autofocus>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="country">Country</label>
+                            <input type="text" ng-model="activeTemplate.destinationCountry" class="form-control" class="form-control" id="country" name="country">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="version">Version</label>
+                            <input type="text" ng-model="activeTemplate.version" class="form-control" class="form-control" id="version" name="version">
+
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="row">
+                  
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="aboutDestination">About {{activeTemplate.destinationCity}},{{activeTemplate.destinationCountry}}</label>
+                            <textarea type="text" ng-model="activeTemplate.aboutDestination" class="form-control" id="aboutDestination" placeholder=""
+                                name="aboutDestination" rows="5"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="dining">Dining</label>
+                            <textarea type="text" ng-model="activeTemplate.dining" class="form-control" id="dining" placeholder="" name="dining"
+                                rows="5"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="weather">Weather</label>
+                            <textarea type="text" ng-model="activeTemplate.weather" class="form-control" id="weather" placeholder="" name="weather"
+                                rows="5"></textarea>
+                        </div>
+                       
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="driving">Driving</label>
+                            <textarea type="text" ng-model="activeTemplate.driving" class="form-control" id="driving" placeholder="" name="driving"
+                                rows="5"></textarea>
+                        </div>
+                    </div>
+                   
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="payments">Payments</label>
+                            <textarea type="text" ng-model="activeTemplate.payments" class="form-control" id="payments" placeholder="" name="payments"
+                                rows="5"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="electronics">Electronics</label>
+                            <textarea type="text" ng-model="activeTemplate.electronics" class="form-control" id="electronics" placeholder=""
+                                name="electronics" rows="5"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="shopping">Shopping</label>
+                            <textarea type="text" ng-model="activeTemplate.shopping" class="form-control" id="shopping" placeholder="" name="shopping"
+                                rows="5"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="timeZone">Time Zone</label>
+                            <textarea type="text" ng-model="activeTemplate.timeZone" class="form-control" id="timeZone" placeholder=""
+                                name="timeZone" rows="5"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="language">Language</label>
+                            <textarea type="text" ng-model="activeTemplate.language" class="form-control" id="language" placeholder="" name="language"
+                                rows="5"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="medical">Medical</label>
+                            <textarea type="text" ng-model="activeTemplate.medical" class="form-control" id="medical" placeholder=""
+                                name="medical" rows="5"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="transportation">Transportation</label>
+                            <textarea type="text" ng-model="activeTemplate.transportation" class="form-control" id="transportation" placeholder="" name="transportation"
+                                rows="5"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="hotel">Hotel</label>
+                            <textarea type="text" ng-model="activeTemplate.hotel" class="form-control" id="hotel" placeholder=""
+                                name="hotel" rows="5"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="dining">Dining</label>
+                            <textarea type="text" ng-model="activeTemplate.dining" class="form-control" id="dining" placeholder="" name="dining"
+                                rows="5"></textarea>
+                        </div>
+                    </div>
+                  
+                </div> -->
+               
+               
+                <!-- <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="drinkingWater">Drinking Water</label>
+                                <textarea type="text" ng-model="activeTemplate.drinkingWater" class="form-control" id="drinkingWater" placeholder="" name="drinkingWater"
+                                    rows="5"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="publicAreas">Public Areas</label>
+                                <textarea type="text" ng-model="activeTemplate.publicAreas" class="form-control" id="publicAreas" placeholder=""
+                                    name="publicAreas" rows="5"></textarea>
+                            </div>
+                        </div>
+                    </div>  -->
+                    <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="culture">Culture</label>
+                                    <textarea type="text" ng-model="activeTemplate.culture" class="form-control" id="culture" placeholder="" name="culture"
+                                        rows="5"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="religion">Religion</label>
+                                    <textarea type="text" ng-model="activeTemplate.religion" class="form-control" id="religion" placeholder=""
+                                        name="religion" rows="5"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="row">
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="border">Border</label>
+                                        <textarea type="text" ng-model="activeTemplate.borderSecurity" class="form-control" id="Border" placeholder="" name="Border"
+                                            rows="5"></textarea>
+                                    </div>
+                                </div> 
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="safety">Safety</label>
+                                        <textarea type="text" ng-model="activeTemplate.safety" class="form-control" id="safety" placeholder=""
+                                            name="safety" rows="5"></textarea>
+                                    </div>
+                                </div>
+                            </div> -->
+                            <!-- <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="driving">Driving</label>
+                                            <textarea type="text" ng-model="activeTemplate.driving" class="form-control" id="driving" placeholder="" name="driving"
+                                                rows="5"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="locals">Locals</label>
+                                            <textarea type="text" ng-model="activeTemplate.locals" class="form-control" id="locals" placeholder=""
+                                                name="locals" rows="5"></textarea>
+                                        </div>
+                                    </div>
+                                </div> -->
+                                <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="usefulPhone">Useful Phone Numbers</label>
+                                                <textarea type="text" ng-model="activeTemplate.usefulPhone" class="form-control" id="usefulPhone" placeholder="" name="usefulPhone"
+                                                    rows="5"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="others">Others</label>
+                                                <textarea type="text" ng-model="activeTemplate.others" class="form-control" id="others" placeholder=""
+                                                    name="others" rows="5"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="row">
+                                            
+                                             <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="others">Others</label>
+                                                    <textarea type="text" ng-model="activeTemplate.others" class="form-control" id="others" placeholder=""
+                                                        name="others" rows="5"></textarea>
+                                                </div>
+                                            </div> 
+                                            <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="packing">Packing List</label>
+                                                        <textarea type="text" ng-model="activeTemplate.packing" class="form-control" id="packing" placeholder="" name="packing"
+                                                            rows="5"></textarea>
+                                                    </div>
+                                                </div>
+                                        </div> -->
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <button ng-show="ifSave" ng-click="insertTemplate()" class="btn btn-success btn-block">Save</button>
+                        <button ng-hide="ifSave" ng-click="updateTemplate(activeTemplate.templateID)" class="btn btn-success btn-block">Update Template:{{activeTemplate.templateID}}</button>
+                        <button ng-hide="ifSave" ng-click="insertTemplate()" class="btn btn-warning btn-block">Save As New Template - {{activeTemplate.destinationCountry}} ({{activeTemplate.destinationCity}})</button>                        
+                        <button ng-hide="ifSave" ng-click="deleteTemplate(activeTemplate.templateID)" class="btn btn-danger btn-block">Delete</button>
+                        
+                        <span ng-bind="insertResponse"></span>
+                    </div>
+                </div>
+
+
+
+            </form>
+
+
+
+        </div>
+        <!-- /container -->
+    </FIELDSET>
+
+
+
+
+
+</div>

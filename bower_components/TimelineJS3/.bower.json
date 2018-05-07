@@ -1,0 +1,14 @@
+{
+  "name": "TimelineJS3",
+  "homepage": "https://github.com/fmaturel/TimelineJS3",
+  "version": "3.3.12",
+  "_release": "3.3.12",
+  "_resolution": {
+    "type": "version",
+    "tag": "3.3.12",
+    "commit": "fd71bfb552262b21ff1354f4daab1a10fd2850da"
+  },
+  "_source": "https://github.com/fmaturel/TimelineJS3.git",
+  "_target": "3.3.12",
+  "_originalSource": "https://github.com/fmaturel/TimelineJS3.git"
+}

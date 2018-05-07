@@ -1,0 +1,22 @@
+div.paasb-searchbox-filter-selectors {
+
+  visibility: hidden;
+  display: inline-block;
+  
+  &.loaded {
+    visibility: visible;
+  }
+
+  ul {
+
+    li {
+
+      &.active {
+        font-weight: bold;
+      }
+
+    }
+
+  }
+
+}

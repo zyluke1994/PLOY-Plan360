@@ -1,0 +1,228 @@
+div.paasb-searchbox {
+
+  div.paasb-search-box-auto-suggestions {
+    display: inline-block;
+  }
+
+  div.paasb-added-filters-wrapper {
+    padding: 0 0 8px 7px;
+    background: #E1F0FD;
+    border-radius: 6px;
+    margin-top: 7px;
+    margin-bottom: 4px;
+  }
+
+  div.paasb-searchbox-added-filter {
+
+    float: left;
+    transition: opacity .50s ease-in-out;
+    -moz-transition: opacity .50s ease-in-out;
+    -webkit-transition: opacity .50s ease-in-out;
+
+    &.over-placement-1 {
+
+      div.paasb-searchbox-added-filter-operator,
+      div.paasb-searchbox-added-filter-contents {
+        border-left: 1px dashed #000;
+      }
+
+    }
+
+    &.over-placement-2 {
+
+      div.paasb-searchbox-added-filter-operator,
+      div.paasb-searchbox-added-filter-contents {
+        border: 1px dashed #000;
+      }
+
+    }
+
+    &.over-placement-3 {
+
+      div.paasb-searchbox-added-filter-operator,
+      div.paasb-searchbox-added-filter-contents {
+        border-right: 1px dashed #000;
+      }
+
+    }
+
+    &.dragged-item {
+
+      opacity: 0.40;
+
+    }
+
+    div.paasb-searchbox-added-filter-contents {
+
+      background: #FFF;
+      padding: 5px 6px 5px 6px;
+      border-radius: 6px;
+      margin-right: 10px;
+      margin-top: 8px;
+      float: left;
+
+      div.animator {
+        background: transparent;
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+
+      &.child {
+
+        span {
+
+          &.selector-type {
+            background: #FFDFDF;
+          }
+
+        }
+
+      }
+
+    }
+
+    div.paasb-searchbox-added-filter-operator {
+
+      background: #FFF;
+      padding: 5px 6px 5px 6px;
+      border-radius: 6px;
+      margin-right: 10px;
+      margin-top: 8px;
+      float: left;
+
+      span {
+
+        font-size: 14px;
+        color: rgba(0, 0, 0, 0.5);
+        font-weight: bold;
+        padding-top: 1px;
+        padding-bottom: 1px;
+        padding-left: 2px;
+        padding-right: 2px;
+        display: block;
+
+        i {
+
+          &.fa-arrow-left {
+            margin-right: 5px;
+            color: rgba(0, 0, 0, 0.75);
+          }
+
+          &.fa-arrow-right {
+            margin-left: 5px;
+            color: rgba(0, 0, 0, 0.75);
+          }
+
+        }
+
+      }
+
+    }
+
+    span {
+
+      &.filter-name {
+        font-size: 13px;
+        text-transform: uppercase;
+        color: rgba(0, 0, 0, 0.65);
+        font-weight: bold;
+        letter-spacing: 1px;
+      }
+
+      &.filter-value {
+        display: inline-block;
+        padding-bottom: 2px;
+        font-size: 15px;
+        color: rgba(0, 0, 0, 0.82);
+      }
+
+      &.selector-type {
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: bold;
+        margin-top: 0px;
+        background: #CAE5FF;
+        margin-left: 9px;
+        padding: 4px;
+        opacity: 0.6;
+        border-radius: 4px;
+        margin-right: 7px;
+      }
+
+    }
+
+    ul {
+
+      list-style-type: none;
+      padding: 0;
+      margin: 0 0 0 0;
+      display: block;
+      position: absolute;
+      z-index: 5;
+      border-left: 1px solid #A9A9A9;
+      border-right: 1px solid #A9A9A9;
+      border-bottom: 1px solid #A9A9A9;
+      max-height: 130px;
+      overflow-y: scroll;
+
+      li {
+
+        cursor: pointer;
+
+        &:nth-child(odd) {
+
+          background: rgb(236, 245, 255);
+
+        }
+
+        &:nth-child(even) {
+
+          background: #FFF;
+
+        }
+
+        &:hover {
+          font-style: italic;
+        }
+
+        span {
+          display: block;
+          padding: 6px;
+          font-size: 14px;
+        }
+
+      }
+
+    }
+
+    i {
+
+      position: inherit;
+      top: 0;
+      margin: 0;
+      right: 0;
+
+      &.fa-times {
+        display: inline-block;
+        margin-left: 5px;
+        vertical-align: top;
+        font-size: 18px;
+        margin-right: 5px;
+      }
+
+    }
+
+    input {
+      outline: none;
+      border-top-left-radius: 4px;
+      border-top-right-radius: 4px;
+      border: 1px solid #D4D1D1;
+      font-size: 14px;
+      padding-left: 5px;
+    }
+
+  }
+
+}

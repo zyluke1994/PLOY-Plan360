@@ -1,0 +1,63 @@
+html(ng-app="app")
+  head
+    title Pure Angular Advanced Searchbox
+    // bower:css
+    // endbower
+    link(rel="stylesheet", href="styles/main.css")
+  body(ng-controller="AppCtrl")
+    h1 Pure Angular Advanced Searchbox
+    
+    paasb-search-box(
+      search-params="sOptions",
+      paasb-search-box-filtering="sFilters",
+      paasb-search-box-enable-filtering-operators="true",
+      paasb-search-box-config="sConfig",
+      paasb-search-box-auto-complete="sConfig",
+      paasb-search-box-cache-filter="true",
+      paasb-search-box-filter-selectors="sFilterSelectors",
+      paasb-search-box-filter-operators="sFilterOperators",
+      paasb-search-box-enable-grouping="true",
+      placeholder="Enter your query here..."
+    )
+    
+    // bower:js
+    // endbower
+    
+    script(src="scripts/ui.module.js")
+    script(src="scripts/ui.templates.js")
+    script(src="scripts/ui.config.js")
+    
+    script(src="scripts/directives/searchbox.js")
+    script(src="scripts/directives/searchbox-grouping.js")
+    script(src="scripts/directives/searchbox-filtering.js")
+    script(src="scripts/directives/searchbox-added-filter.js")
+    script(src="scripts/directives/searchbox-filter-selectors.js")
+    script(src="scripts/directives/searchbox-filter-operators.js")
+    script(src="scripts/directives/searchbox-auto-suggestions.js")
+    script(src="scripts/directives/searchbox-cache-filters.js")
+    script(src="scripts/directives/searchbox-auto-complete.js")
+    script(src="scripts/directives/searchbox-filter-moved.js")
+    script(src="scripts/directives/searchbox-filter-moved-animation.js")
+    script(src="scripts/directives/auto-size.js")
+    script(src="scripts/directives/draggable.js")
+    
+    script(src="scripts/services/ui.js")
+    script(src="scripts/services/grouping.js")
+    script(src="scripts/services/filtering.js")
+    script(src="scripts/services/auto-complete.js")
+    script(src="scripts/services/utils.js")
+    script(src="scripts/services/memory.js")
+    script(src="scripts/services/validation.js")
+    script(src="scripts/services/placeholders.js")
+    script(src="scripts/services/event-handling.js")
+    script(src="scripts/services/api.js")
+    
+    script(src="scripts/filters/suggest.js")
+    script(src="scripts/filters/clean.js")
+
+    //- script(src="scripts/ui.core.min.js")
+    
+    script(src="scripts/testing/app.js")
+    script(src="scripts/testing/controllers/app.js")
+    
+    script(src="//localhost:37000/livereload.js")

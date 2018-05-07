@@ -1,0 +1,111 @@
+<div class="container" ng-controller="viewAttractionCtrl as $ctrl" ng-init="displayData()">
+
+    <div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-2">
+                    <input type="text" class="form-control" placeholder="Search Any" ng-model="recordSearch.$">
+
+                </div>
+                <div class="col-md-2">
+                    <input type="text" class="form-control" placeholder="Search By Country" ng-model="recordSearch.country">
+
+                </div>
+                <div class="col-md-2">
+                    <input type="text" class="form-control" placeholder="Search By State" ng-model="recordSearch.state">
+
+                </div>
+                <div class="col-md-2">
+                    <input type="text" class="form-control" placeholder="Search By City" ng-model="recordSearch.city">
+
+                </div>
+                <div class="col-md-2">
+                    <input type="text" class="form-control" placeholder="Search By Name" ng-model="recordSearch.attractionName">
+
+                </div>
+                <div class="col-md-2">
+                    <input type="text" class="form-control" placeholder="Search By Category" ng-model="recordSearch.category">
+
+                </div>
+
+
+            </div>
+
+        </div>
+    </div> Hello - {{userLogin}} Result count: {{filtered.length}}
+    <!--<div class='md-padding' layout="row" flex-wrap>
+    <md-card style="width: 350px;" ng-repeat="attraction in data | filter:recordSearch as filtered">
+      <img src="http://placehold.it/150x150" class="md-card-image" alt="user avatar">
+      <md-card-content>
+        <h2>{{attraction.attractionName}}</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+      </md-card-content>
+      <div class="md-actions" layout="row" layout-align="end center">
+        <md-button>Save</md-button>
+        <md-button>View</md-button>
+      </div>
+    </md-card>
+  </div>-->
+
+    <div class="row">
+        <div class="col-md-6 attractionDisplayBox" ng-repeat="attraction in data | filter:recordSearch as filtered">
+            <div class="row">
+                <div class="col-md-7" style="font-size:9pt">
+                    <label>ID: </label> {{attraction.attractionID}}
+                    <label> Category: </label> {{attraction.category}}
+                    <br>
+                    <label>Country: </label> {{attraction.country}}
+                    <label> State: </label> {{attraction.state}}
+                    <label> City: </label> {{attraction.city}}
+                    <br>
+                    <p style="font-size:8pt"><label>Last Updated:</label> {{attraction.updatedBy}} @ {{attraction.updatedTime}}</p>
+                    -----
+                </div>
+                <div class="col-md-5">
+                    <span>
+                        <button type="button" class="btn btn-primary btn-sm" ng-click="openAddToPlanModal('lg',attraction)">Add To Plan</button>
+                        <button type="button" class="btn btn-info btn-sm" ng-click="openEditModal('lg',attraction)">Edit</button>
+                        <button type="button" ng-click="deleteAttraction(attraction.attractionID)" class="btn btn-warning btn-sm ">Delete</button>
+
+
+
+                </div>
+                
+            </div>
+
+            <label>Name: </label> {{attraction.attractionName}}
+            <br> 
+            <label>Address: </label> {{attraction.address}}
+            <br> 
+            <label>Phone: </label> {{attraction.phone}}
+            <br> 
+            <label>Website: </label> <a href="{{attraction.website}}">{{attraction.website}}</a>
+            <br> 
+            <label>Hours: </label> {{attraction.hours}}
+
+            <br> 
+            <label>Ticket Info: </label> {{attraction.ticketInfo}}
+            <br> 
+            <label>Parking Info: </label> {{attraction.parkingInfo}}
+            <br> 
+            <label>Public Transportation: </label> {{attraction.publicTransport}}
+
+            <br> 
+            <label>Description: </label> {{attraction.description}}
+            
+            <br> 
+            <label>Notes: </label> {{attraction.notes}}
+            <br>
+
+
+            <img class="imageInAttractionBox" ng-src="{{attraction.picture1URL}}" alt="No image" onerror="this.onerror=null;this.src='../assets/noImage.png';"
+            />
+            <img class="imageInAttractionBox" ng-src="{{attraction.picture2URL}}" alt="No image" onerror="this.onerror=null;this.src='../assets/noImage.png';"
+            />
+
+            <br>
+
+            <br>
+        </div>
+    </div>
+</div>

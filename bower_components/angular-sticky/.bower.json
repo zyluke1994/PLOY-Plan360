@@ -1,0 +1,50 @@
+{
+  "name": "angular-sticky",
+  "version": "0.4.2",
+  "author": "Harm van der Werf",
+  "keywords": [
+    "angular",
+    "sticky",
+    "stick",
+    "sidebar",
+    "fixed",
+    "scrolling",
+    "scroll",
+    "directive",
+    "service"
+  ],
+  "main": [
+    "dist/angular-sticky.js"
+  ],
+  "ignore": [
+    "/.*",
+    "Gruntfile.js",
+    "karma.conf.js",
+    "demo/less",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.4.0"
+  },
+  "devDependencies": {
+    "underscore": "~1.8.3",
+    "jquery": "~2.0.3",
+    "bootstrap": "~3.3.6",
+    "angular-mocks": "^1.4.0",
+    "angular-bootstrap": "~1.1.2",
+    "angular-ui-router": "~0.2.18",
+    "google-code-prettify": "1.0.1",
+    "ngSmoothScroll": "2.0.0"
+  },
+  "homepage": "https://github.com/harm-less/angular-sticky",
+  "_release": "0.4.2",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.4.2",
+    "commit": "e8f5b3460815d3eaab86a6eb754fd62be9b7c8ec"
+  },
+  "_source": "https://github.com/harm-less/angular-sticky.git",
+  "_target": "^0.4.2",
+  "_originalSource": "angular-sticky-plugin",
+  "_direct": true
+}

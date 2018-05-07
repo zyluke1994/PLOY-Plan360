@@ -1,0 +1,291 @@
+<div class="modal-header">
+    <div class="row">
+        <div class="col-md-7">
+            <h3 class="modal-title" id="modal-title">{{$ctrl.attraction.attractionName}} </h3>
+        </div>
+        <div class="col-md-2">
+            <label>ID: {{$ctrl.attraction.attractionID}} </label>
+        </div>
+        <div class="col-md-3" style="text-align:right">
+            <span>             
+                <button class="btn btn-primary" type="button" ng-click="$ctrl.updateAttraction($ctrl.attraction)">Save</button>
+                <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+        </span>
+        </div>
+
+    </div>
+
+</div>
+<div class="modal-body" id="modal-body">
+    <!--<ul>
+        <li ng-repeat="attraction in $ctrl.attraction">
+            <a href="#" ng-click="$event.preventDefault(); $ctrl.selected.item = item">{{ item }}</a>
+        </li>
+    </ul>-->
+    <!--Selected: <b>{{$ctrl.attraction.attractionName}}</b>-->
+
+    <div>
+        <FIELDSET>
+            <div>
+                <!-- Example row of columns -->
+                <form name="entryForm" id="database-form">
+                    <div class="row">
+
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="inputCountry">Country</label>
+
+                                <select class="form-control" ng-model="$ctrl.attraction.country" id="inputCountry" name="inputCountry" autofocus>
+                    <option>United States</option>
+                    <option>Canada</option>
+                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="inputState">State</label>
+                                <input type="text" ng-model="$ctrl.attraction.state" class="form-control" id="inputState" placeholder="NY" name="inputState">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="inputCity">City</label>
+                                <input type="text" ng-model="$ctrl.attraction.city" class="form-control" id="inputCity" placeholder="Rochester" name="inputCity">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="inputGPS">GPS Coordinates</label>
+                                <input type="text" ng-model="$ctrl.attraction.GPSCoordinates" class="form-control" id="inputGPS" placeholder="######" name="inputGPS">
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="inputName">Attraction Name</label>
+                                <input type="text" ng-model="$ctrl.attraction.attractionName" ng-init="$ctrl.attraction.attractionName" class="form-control"
+                                    id="inputName" name="inputName">
+                            </div>
+
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="inputCategory">Category</label>
+
+
+                                <select class="form-control" ng-model="$ctrl.attraction.category" id="inputCategory" name="inputCategory">
+                    <option>Accommodations</option>
+                    <option>Food and Drinks</option>
+                    <option>Museums</option>
+                    <option>Outdoor Activities</option>
+                    <option>Sports</option>
+                    <option>Transportation</option>
+                    <option>Tours and Activities</option>
+                    <option>Nightlife</option>
+                    <option>Classes and Workshops</option>
+                    <option>Shopping</option>
+                    <option>Nature and Parks</option>
+                    <option>Fun and Games</option>
+                    <option>Spas and Wellness</option>
+                    <option>Theater and Concerts</option>
+                    <option>Zoos and Aquariums</option>
+                    <option>Traveler Resources</option>
+                    <option>Amusement Parks</option>
+                    <option>Boat Tours and Water</option>
+                    <option>Events</option>
+                    <option>Casino and Gambling</option>
+                    <option>Other</option>
+
+                  </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="duration">Duration Suggested (Hours)</label>
+                                <select class="form-control" ng-model="$ctrl.attraction.durationSuggest" id="duration" name="duration">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                  </select>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="inputAddress">Address</label>
+                                <input type="text" ng-model="$ctrl.attraction.address" class="form-control" id="inputAddress" name="inputAddress">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="inputPhone">Phone</label>
+                                <input type="text" ng-model="$ctrl.attraction.phone" class="form-control" id="inputPhone" name="inputPhone">
+                            </div>
+
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="inputWebsite">Website</label>
+                                <input type="text" ng-model="$ctrl.attraction.website" class="form-control" id="inputWebsite" name="inputWebsite">
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="row">
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="inputTicket">Ticket Info</label>
+                                <textarea type="text" ng-model="$ctrl.attraction.ticketInfo" class="form-control" id="inputTicket" placeholder="" name="inputTicket"
+                                    rows="2"></textarea>
+                            </div>
+
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="inputParking">Parking Info</label>
+                                <textarea type="text" ng-model="$ctrl.attraction.parkingInfo" class="form-control" id="inputParking" placeholder="" name="inputParking"
+                                    rows="2"></textarea>
+                            </div>
+
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="inputPublicTrans">Public Transportation Info</label>
+                                <textarea type="text" ng-model="$ctrl.attraction.publicTransport" class="form-control" id="inputPublicTrans" placeholder=""
+                                    name="inputPublicTrans" rows="2"></textarea>
+                            </div>
+
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="inputHours">Hours</label>
+                                <textarea type="text" ng-model="$ctrl.attraction.hours" class="form-control" id="inputHours" placeholder="N/A" name="inputHours"
+                                    rows="2"></textarea>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label for="inputDetails">Details</label>
+                                <textarea type="text" ng-model="$ctrl.attraction.description" class="form-control" id="inputDetails" name="inputDetails"
+                                    rows="5"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="inputPhone">Other Notes</label>
+                                <textarea type="text" ng-model="$ctrl.attraction.notes" class="form-control" id="inputNotes" name="inputNotes" rows="5"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+
+                            <div class="form-group">
+                                <label for="inputURL1">Photo URL 1</label>
+                                <input type="text" ng-model="$ctrl.attraction.picture1URL" class="form-control" id="inputURL1" name="inputURL1">
+                            </div>
+                                                        <img class="imageInAttractionBox" ng-src="{{$ctrl.attraction.picture1URL}}" alt="No image" onerror="this.onerror=null;this.src='../assets/noImage.png';" />
+
+                        </div>
+                        <div class="col-md-4">
+
+                            <div class="form-group">
+                                <label for="inputURL2">Photo URL 2</label>
+                                <input type="text" ng-model="$ctrl.attraction.picture2URL" class="form-control" id="inputURL2" name="inputURL2">
+                            </div>
+                                                                    <img class="imageInAttractionBox" ng-src="{{$ctrl.attraction.picture2URL}}" alt="No image" onerror="this.onerror=null;this.src='../assets/noImage.png';"/>
+
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="recommend">Recommend</label>
+                                <select class="form-control" ng-model="$ctrl.attraction.recommendRating" id="recommend" name="recommend">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                  </select>
+                            </div>
+
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="inputReservation">Reservation Needed</label>
+                                <input type="form-control" ng-model="$ctrl.attraction.reservationNeeded" class="form-control" id="inputReservation" name="inputReservation"
+                                    value="">
+                            </div>
+                        </div>
+
+                    </div>
+                    <!--<div class="row">
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="inputBy">Inputted By</label>
+                                <input type="text" ng-model="inputBy" class="form-control" id="inputBy" name="inputBy">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="inputCrosscheck">Cross-Checked By</label>
+                                <input type="text" ng-model="crossCheck" class="form-control" id="inputCrosscheck" name="inputCrosscheck">
+                            </div>
+                        </div>
+
+                    </div>-->
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <strong>Please double check all information above before submit.</strong>
+                            <br>
+                            <div class="success" style="display:none">
+                                <p>Success!</p>
+                            </div>
+                            <div class="error" style="display:none">
+                                <p>Error!</p>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div id="form-messages"></div>
+                    </div>
+                    <br>
+
+
+
+
+                </form>
+
+            </div>
+            <!-- /container -->
+        </FIELDSET>
+    </div>
+
+
+</div>
+
+
+
+<div class="modal-footer">
+
+</div>

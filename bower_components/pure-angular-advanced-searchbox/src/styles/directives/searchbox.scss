@@ -1,0 +1,155 @@
+div.paasb-searchbox {
+
+  border: 1px solid rgba(4, 4, 4, 0.3);
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  border-radius: 4px;
+  background: #FFF;
+  padding: 4px;
+
+  div.paasb-searchbox-wrapper {
+
+    position: relative;
+
+    i {
+
+      &.fa-cog {
+
+        opacity: .6;
+        right: 62px;
+        margin-top: -11px;
+        color: #4A92D0;
+
+        &.no-cache-filtering {
+          right: 40px;
+          margin-top: -10px;
+        }
+
+        &.has-eraser-and-no-cache-filtering {
+          right: 62px;
+          margin-top: -10px;
+        }
+
+        &.magnifier-always-on {
+
+          right: 62px;
+
+          &.no-cache-filtering {
+
+            right: 38px;
+
+            &.has-filters {
+              right: 62px;
+            }
+
+          }
+
+          &.has-eraser-and-no-cache-filtering {
+
+            &.has-query {
+              right: 84px;
+            }
+
+            &.has-filters.has-query,
+            &.has-query {
+              right: 84px;
+            }
+
+          }
+
+          &.has-filters.has-query,
+          &.has-query {
+            right: 109px;
+          }
+
+          &.has-filters {
+            right: 84px;
+          }
+
+        }
+
+        &.has-eraser-and-cache-filtering {
+
+          right: 88px;
+          margin-top: -10px;
+
+        }
+
+      }
+
+      position: absolute;
+      margin: -1px 0 0 0;
+      top: 50%;
+      transform: translate(0, -50%);
+      font-size: 18px;
+      right: 15px;
+
+      &.fa-eraser {
+
+        right: 62px;
+        color: #4A92D0;
+        cursor: pointer;
+
+        &.magnifier-always-on {
+          right: 84px;
+        }
+
+        &.no-cache-filtering {
+
+          right: 40px;
+
+          &.magnifier-always-on {
+            right: 60px;
+          }
+
+        }
+
+      }
+
+      &.fa-trash {
+
+        cursor: pointer;
+        color: #337ab7;
+
+        &.magnifier-always-on {
+          right: 38px;
+        }
+
+        &:hover {
+
+          color: #000;
+
+        }
+
+      }
+
+      &.fa-search {
+
+        cursor: pointer;
+        -webkit-transition: color 600ms linear;
+        -moz-transition: color 600ms linear;
+        -o-transition: color 600ms linear;
+        -ms-transition: color 600ms linear;
+        transition: color 600ms linear;
+
+        &:hover {
+          color: #337ab7;
+        }
+
+      }
+
+    }
+
+    > input {
+      font-size: 18px;
+      border: none;
+      width: 100%;
+      outline: none;
+      padding: 9px 8px 7px 50px;
+      color: rgba(0, 0, 0, 0.68);
+      font-weight: normal;
+      font-style: italic;
+    }
+
+  }
+
+}

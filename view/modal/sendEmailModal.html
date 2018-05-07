@@ -1,0 +1,132 @@
+<div class="modal-header">
+
+    <FIELDSET>
+        <!-- Example row of columns -->
+        <form name="entryForm" id="database-form">
+            <div class="row">
+                <div class="col-md-4">
+                    <h3 class="modal-title" id="modal-title">Send Email </h3>
+
+                </div>
+
+                <div class="col-md-8" style="text-align:right">
+                    <span>
+
+                        <button class="btn btn-primary" type="button" ng-click="$ctrl.send()">Send</button>
+                        <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div ng-show="$ctrl.successAlert" class="alert alert-success fade in alert-dismissable">
+                        <strong>Success!</strong> Email Sent.
+                    </div>
+
+                    <div ng-show="$ctrl.errorAlert" class="alert alert-danger fade in alert-dismissable">
+                        <strong>Error!</strong> Oops, something went wrong. Please check email addresses or contact support.
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="inputFrom">From</label>
+                        <input type="text" ng-model="$ctrl.userFullname" class="form-control" id="inputFrom" name="inputFrom">
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <label for="inputFrom">Send me a copy (Email)</label>
+                        <input type="text" ng-model="$ctrl.userEmail" class="form-control" id="userEmail" name="userEmail">
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="inputTo">Recipient Name</label>
+                        <input type="text" ng-model="$ctrl.customerName" class="form-control" id="inputTo" name="inputTo">
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <label for="inputTo">Recipient Email</label>
+                        <input type="text" ng-model="$ctrl.customerEmail" class="form-control" id="inputTo" name="inputTo">
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="inputSubject">Subject</label>
+                        <input type="text" ng-model="$ctrl.emailSubject" class="form-control" id="inputSubject" name="inputSubject">
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="inputMessage">Message</label>
+                        <!-- Editor 1 -->
+                        <ng-quill-editor ng-model="$ctrl.emailContentHTML" toolbar="true" link-tooltip="true" image-tooltip="falsw" toolbar-entries="size bold list bullet italic underline strike align color background link"
+                            editor-required="true" required="" error-class="input-error"></ng-quill-editor>
+
+                        <!-- Editor 2
+                            <text-angular ng-model="$ctrl.emailContentHTML" ta-toolbar="[['h1','h2','h3','p'],['bold','italics','underline','strikeThrough','insertLink'],['ul','ol','justifyLeft','justifyCenter','justifyRight','justifyFull','indent','outdent','undo','clear']]"></text-angular>
+                             -->
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- <label for='uploaded_file'>Select A File To Upload:</label>
+                        
+                        <input type="file" ng-model="$ctrl.fileAttached" name="uploaded_file">
+                         -->
+                    <!-- <div class="form-group">
+                                <label for="inputSubject">Local Path to Plan</label>
+                                <input type="text" ng-model="$ctrl.localPath" class="form-control" id="localPath" name="localPath">
+                            </div> -->
+                            <strong>Latest Plan on File: </strong>
+<a target="blank" href="../assets/Uploads/plan/{{$ctrl.databasePlanFileLocation}}"><p>{{$ctrl.databasePlanFileLocation}}</p></a>
+                    <button ngf-select="$ctrl.uploadFiles($files)" multiple accept="*">Select Files</button>
+                    <br>
+                    <br>Files:
+                    <ul>
+                        <li ng-repeat="f in $ctrl.files" style="font:smaller">
+                            {{f.name}}
+                        </li>
+                    </ul>
+                    <span class="progress" ng-show="$ctrl.progress >= 0">
+                        <div style="width:{{$ctrl.progress}}%" ng-bind="$ctrl.progress + '%'"></div>
+                    </span> {{$ctrl.errorMsg}}
+
+                </div>
+            </div>
+
+
+
+
+
+
+        </form>
+
+        <!-- /container -->
+    </FIELDSET>
+
+
+
+
+
+</div>

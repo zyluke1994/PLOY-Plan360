@@ -1,0 +1,114 @@
+<div id="login_body">
+
+    <div class="login_container">
+        <!--
+<div class="alert alert-info">
+    Username: test<br />
+    Password: test
+</div>
+-->
+        <div class="horizontal_center">
+
+            <img src="assets/plan360_purple.png" style="max-width:120px; margin-top:-5px;">
+
+        </div>
+        <br>
+
+        <div ng-show="error" class="alert alert-danger">{{error}}</div>
+        <form name="form" ng-submit="login()" role="form">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <i class="fa fa-key"></i>
+                <input type="text" name="username" id="username" class="form-control" ng-model="username" required />
+                <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Username is required</span>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <i class="fa fa-lock"></i>
+                <input type="password" name="password" id="password" class="form-control" ng-model="password" required />
+                <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password is required</span>
+            </div>
+            <div class="form-actions horizontal_center">
+                <button type="submit" ng-disabled="form.$invalid || dataLoading" class="btn btn-danger ">Login</button>
+                <img ng-if="dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
+                />
+            </div>
+        </form>
+
+        <div class="btn-group" uib-dropdown auto-close="disabled" is-open="status.isopen">
+            <a uib-dropdown-toggle ng-disabled="disabled">Sign Up</a>
+            <ul style="width:500px;" class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+                <form name="signupForm" id="database-form" style=" margin:30px;">
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="inputCategory">Username:</label>
+                                <input type="text" ng-model="signupUsername" class="form-control" id="signupUsername" name="signupUsername">
+
+                            </div>
+
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="inputCategory">Full Name:</label>
+                                <input type="text" ng-model="signupFullName" class="form-control" id="signupFullName" name="signupFullName">
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="inputCategory">Password:</label>
+                                <input type="password" ng-model="signupPassword" class="form-control" id="signupPassword" name="signupPassword">
+
+                            </div>
+
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="inputCategory">Confirm Password:</label>
+                                <input type="password" ng-model="signupPassword2" class="form-control" id="signupPassword2" name="signupPassword2">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="inputCategory">Email:</label>
+                                <input type="text" ng-model="signupEmail" class="form-control" id="signupEmail" name="signupEmail" required>
+
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="inputCategory">Activation Key:</label>
+                                <input type="text" ng-model="signupActivationKey" class="form-control" id="signupActivationKey" name="signupActivationKey"
+                                    required>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+
+
+                        <div class="col-md-6">
+
+                        </div>
+                        <div class="col-md-6">
+                            <br>
+                            <button style="width:100px" class="btn btn-success" ng-click="signup()">Sign Up</button>
+                            <br> {{statusMessage}}
+                        </div>
+                    </div>
+
+
+                </form>
+        </div>
+    </div>
+</div>

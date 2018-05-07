@@ -1,0 +1,140 @@
+<div>
+    <br>
+    <!-- <div class="col-md-8">
+
+        <div class="row">
+            <div  class="col-md-12 homeBanner">
+                <br>
+                <br>
+                <strong><h1 style="color:grey; margin-left:150px;"><span class="flaticon-helm" style="font-size:90px;"></span></h1>
+           <h1 style="color:grey; margin-left:100px;">      </strong> Hello Ploy-er.</h1>
+            </div>
+
+        </div>
+        <div  class="row statsBanner">
+
+            <div class="col-md-6">
+                <div class="statsBlock" style="background-color:#605885">
+                    <h3 ng-click="loadClientOnboard()">Active Clients</h3>
+                    <hr>
+                    <h1 style="text-align:center; font-size:5em">{{customerLength}}</h1>
+
+
+                </div>
+
+
+            </div>
+            <div class="col-md-6 ">
+
+                <div class="statsBlock" style="background-color:#ffa41e">
+                    <h3 ng-click="loadViewPlan()">Active Plans</h3>
+                    <hr>
+                    <h1 style="text-align:center; font-size:5em">{{planLength}}</h1>
+
+                </div>
+
+            </div>
+
+         
+
+
+
+
+
+
+        </div>
+    </div> -->
+    <div class="col-sm-2" style="text-align:right; border-right:0.3px solid rgba(211, 211, 211, 0.959); height: calc(100vh - 145px);overflow-y: scroll;">
+        <ul class="list-group">
+            <div>
+                <button class="btn btn-info btn-block btn-md" style=" font-size:11pt; padding-top:15px; padding-bottom:15px;" ng-click="loadInputPlan()">Create New Plan</button>
+            </div>
+            <div style="margin-top:20px;">
+                    <button class="btn btn-sideOption btn-block btn-md active" style="padding-top:10px; padding-bottom:10px; text-align:left;"><span class="glyphicon glyphicon-record" aria-hidden="true" style="margin-right:5px;"></span> Active Plans</button>
+            </div>
+            <div style="margin-top:20px; padding-top:10px; padding-left:10px; padding-bottom:10px; text-align:left;">
+                <label style="color:#5e5e5e" >Filter by Date</label>
+            </div>
+            <div style="margin-top:0px;">
+                    <button class="btn btn-sideOption btn-block btn-md" style="padding-top:10px; padding-bottom:10px; text-align:left;"><span class="glyphicon glyphicon-calendar" aria-hidden="true" style="margin-right:5px;"></span> Upcoming</button>
+            </div>
+            <div style="margin-top:0px;">
+                    <button class="btn btn-sideOption btn-block btn-md" style="padding-top:10px; padding-bottom:10px; text-align:left;"><span class="glyphicon glyphicon-calendar" aria-hidden="true" style="margin-right:5px;"></span> Current</button>
+            </div>
+            <div style="margin-top:0px;">
+                    <button class="btn btn-sideOption btn-block btn-md" style="padding-top:10px; padding-bottom:10px; text-align:left;"><span class="glyphicon glyphicon-calendar" aria-hidden="true" style="margin-right:5px;"></span> Past</button>
+            </div>
+            <div style="margin-top:20px; padding-top:10px; padding-left:10px; padding-bottom:10px; text-align:left;">
+                    <label style="color:#5e5e5e" >Filter by Status</label>
+                </div>
+                <div style="margin-top:0px;">
+                        <button class="btn btn-sideOption btn-block btn-md" style="padding-top:10px; padding-bottom:10px; text-align:left;"><span class="glyphicon glyphicon-bookmark" aria-hidden="true" style="margin-right:5px;"></span> Started</button>
+                </div>
+                <div style="margin-top:0px;">
+                        <button class="btn btn-sideOption btn-block btn-md" style="padding-top:10px; padding-bottom:10px; text-align:left;"><span class="glyphicon glyphicon-bookmark" aria-hidden="true" style="margin-right:5px;"></span> Pending Admin</button>
+                </div>
+                <div style="margin-top:0px;">
+                        <button class="btn btn-sideOption btn-block btn-md" style="padding-top:10px; padding-bottom:10px; text-align:left;"><span class="glyphicon glyphicon-bookmark" aria-hidden="true" style="margin-right:5px;"></span> Pending Client</button>
+                </div>
+                <div style="margin-top:0px;">
+                        <button class="btn btn-sideOption btn-block btn-md" style="padding-top:10px; padding-bottom:10px; text-align:left;"><span class="glyphicon glyphicon-bookmark" aria-hidden="true" style="margin-right:5px;"></span> Completed</button>
+                </div>
+                <div style="margin-top:0px;">
+                        <button class="btn btn-sideOption btn-block btn-md" style="padding-top:10px; padding-bottom:10px; text-align:left;"><span class="glyphicon glyphicon-bookmark" aria-hidden="true" style="margin-right:5px;"></span> Rejected</button>
+                </div>
+    
+        </ul>
+    </div>
+
+    <div class="col-sm-10">
+        <div class="panel panel-default" style="border-style:none; height: calc(100vh - 145px);overflow-y: scroll;">
+            <div class="panel-heading" style="background-color:#605885; color:white;">
+                <h3 class="panel-title ">My Plans
+                    <span class="badge" style="background-color:white; color:#605885">{{myPlanList.length}}</span>
+                </h3>
+            </div>
+            <div class="panel-body">
+                <!-- List group -->
+                <!-- <ul class="list-group">
+                <li style="padding-top:15px; padding-bottom:15px; border-style:none;" ng-repeat="planItem in myPlanList" class="list-group-item">
+                    <a>
+                        <div class="row" style="border-bottom:0.3px solid rgba(211, 211, 211, 0.938);">
+
+                            <div class="col-md-12"> -->
+                <!-- <p ng-click="loadPlanFromHome(planItem.planID)" style="font-size:15pt;">{{planItem.planID}} - {{planItem.tripName}}</p> -->
+                <!-- <a href="" ng-click="loadViewPlanID(planItem.planID)" style="font-size:15pt;">{{planItem.planID}} - {{planItem.tripName}}</a> -->
+                <!-- <a ng-href="#!/viewPlan/{{planItem.planID}}" style="font-size:15pt;">{{planItem.planID}} - {{planItem.tripName}}</a> -->
+
+                <!-- <p> <strong>Customer:</strong> {{planItem.customerName}}</p>
+                            </div>
+                        </div>
+                    </a>
+                   
+
+                </li>
+            </ul> -->
+                <table ng-table="tableParams" class="table" show-filter="true">
+                    <tr ng-repeat="planItem in $data" style="padding-top:10px; padding-bottom:10px;">
+                        <td style="width:8%;" title="'ID'" filter="{ planID: 'text'}" sortable="'planID'">
+                            <a href="" ng-click="loadViewPlanID(planItem.planID)"> {{planItem.planID}}</a>
+                        </td>
+                        <td title="'Trip Name'" filter="{ tripName: 'text'}" sortable="'tripName'">
+                            <a href="" ng-click="loadViewPlanID(planItem.planID)"> {{planItem.tripName}}</a>
+                        </td>
+                        <td style="width:20%;" title="'Customer'" filter="{ customerName: 'text'}" sortable="'customerName'">
+                            {{planItem.customerName}}</td>
+                        <td style="width:10%;" title="'Start'" filter="{ tripStart: 'datetime'}" sortable="'tripStart'">
+                            {{planItem.tripStart | date : "shortDate"}}</td>
+                        <td style="width:10%;" title="'End'" filter="{ tripEnd: 'datetime'}" sortable="'tripEnd'">
+                            {{planItem.tripEnd | date : "shortDate"}}</td>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+</div>

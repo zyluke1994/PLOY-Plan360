@@ -1,0 +1,48 @@
+div(
+  class="paasb-searchbox-added-filter", 
+  draggable="true"
+)
+  paasb-search-box-filter-operators(
+    ng-if="operators",
+    filtering="filtering",
+    filter="filter"
+  )
+  div(
+    class="paasb-searchbox-added-filter-contents"
+    ng-click="openFilter();",
+    ng-class="{ 'child': filter.child, 'root': filter.root }"
+    paasb-search-box-filter-moved="filter"
+  )
+    span(
+      class="filter-name",
+      ng-bind="filter.displayName + ':'"
+    )
+    span(
+      class="selector-type",
+      ng-bind="filter.selector.name",
+      ng-if="filter.selector"
+    )
+    span(
+      ng-bind="filter.value",
+      ng-hide="filter.editing",
+      class="filter-value"
+    )
+    input(
+      type="text", 
+      ng-model="value",
+      ng-hide="!filter.editing",
+      id="{{inputId}}"
+    )
+    span(ng-hide="!filter.loading") Loading...
+    paasb-search-box-filter-selectors(
+      filtering="filtering",
+      filter="filter"
+    )
+    paasb-search-box-auto-suggestions(
+      filtering="filtering",
+      filter="filter"
+    )
+    i(
+      class="fa fa-times",
+      ng-click="destroy();"
+    )

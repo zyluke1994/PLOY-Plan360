@@ -1,0 +1,1270 @@
+<div>
+
+
+
+    <div style="width:100%; margin-left:-2%;" id="planDiv" ng-controller="viewPlanCtrl as $ctrl">
+        <!-- <div id="bannerPlan" ng-hide="bannerPlan">
+            <div class="row">
+                <div class="well" style="height:200px; opacity:0.90">
+                    <h2>
+                        <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Instruction:</h2>
+                    <p>1) Enter Customer Id/Name (Select from dropdown).</p>
+                    <p>2) Select Plan from dropdown (If nothing is showing, click Load or Reload).</p>
+                    <p>3) Click 'Get Plan' and wait until progress bar completes.</p>
+
+                </div>
+            </div>
+        </div> -->
+        <br>
+        <div ng-show="isAdmin" class="row">
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label tooltip-placement="top-left" uib-tooltip="Select ID after dropdown" for="selectCustomer">Customer ID</label>
+                    <!-- ng-blur="refreshCustomerPlan()" -->
+                    <input type="text" id="selectCustomer" name="selectCustomer" ng-model="customerSelected" ng-value="customerSelected.customerID"
+                        uib-typeahead="customer as customer.customerID for customer in customerList | filter:$viewValue | limitTo:8"
+                        class="form-control" autofocus>
+
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label tooltip-placement="top-left" uib-tooltip="Select Name after dropdown" for="selectCustomer">Customer Name</label>
+
+                    <input type="text" id="selectCustomer" name="selectCustomer" ng-model="customerSelected" ng-value="customerSelected.fullName"
+                        uib-typeahead="customer as customer.fullName for customer in customerList | filter:$viewValue | limitTo:8"
+                        class="form-control" autofocus>
+
+
+                </div>
+            </div>
+
+            <div class="col-md-5">
+                <div class="form-group">
+
+                    <label for="selectPlan" tooltip-placement="top-left" uib-tooltip="Click to select. If plans are not loaded correctly, click the icon on right to reload.                    ">Select Plan</label>
+
+                    <span style="float:right;">
+                        <a>
+                            <span class="glyphicon glyphicon-download-alt" ng-click="updateSelectedCustomer()" aria-hidden="true"></span>
+                        </a>
+                        <!-- <a><span class="glyphicon glyphicon-refresh" ng-click="refreshCustomerPlan()" aria-hidden="true"></span> </a> -->
+
+                    </span>
+
+                    <select class="form-control" ng-model="planSelected" ng-options="planSelected as (planSelected.planID +' - '+ planSelected.tripName) for planSelected in filteredPlanList"
+                        id="selectPlan" name="selectPlan">
+                        <option value=""></option>
+
+                    </select>
+
+
+                </div>
+            </div>
+            <!--{{planSelected.planID}}-->
+            <div class="col-md-2">
+                <br>
+                <button class="btn btn-primary" tooltip-placement="top-left" uib-tooltip="" type="button" ng-click="getSelectedPlanEntries()">Get / Refresh Plan</button>
+                <img ng-if="dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
+                />
+            </div>
+
+        </div>
+
+        <!--<div ng-show="processPlanStatusBar">
+            <hr>
+            <uib-progressbar max="processPlanStatusMax" animate="false" value="processPlanStatus"><span style="color:white; white-space:nowrap;">{{processPlanStatus}} / {{processPlanStatusMax}}</span></uib-progressbar>
+        </div>-->
+        <hr ng-show="isAdmin">
+        <uib-tabset active="activeJustified" justified="true" ng-show="accordionDetails">
+            <uib-tab index="0" heading="List View">
+
+                <div pageslide ps-open="attractionPanel" ps-auto-close="false" ps-click-outside="false" ps-size="400px" style="margin-top:50px; padding-bottom:50px; padding-left:10px; padding-right:10px">
+                    <div>
+                        <br>
+                        <a ng-click="toggleAttractionPanel()" style="float:left;" class="button">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Close</a>
+                        <br>
+                        <br>
+                        <div>
+                            <uib-tabset active="active">
+                                <uib-tab index="0" heading="Places">
+                                    <uib-tab-heading class="ng-scope">
+                                        <span class="flaticon-pin"> POI</span>
+                                    </uib-tab-heading>
+                                    <div>
+                                        <form>
+                                            <input type="text" class="form-control" placeholder="Search Any" ng-model="searchAnyText">
+                                            <button type="submit" ng-click="searchAttraction(searchAnyText)" style="float:right;" class="btn btn-default"> Search</button>
+                                            <!-- <button type="button" ng-click="clearSearchAttraction()" style="float:right;" class="btn btn-link"> Clear</button> -->
+                                            <button type="button" ng-click="addNewAttraction()" style="float:right;" class="btn btn-link"> + Add </button>
+
+                                        </form>
+
+
+                                    </div>
+                                    <br>
+                                    <hr>
+                                    <div style="color:#ff941e;" ng-show="showNoAttractionFound">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                            </div>
+                                            <div class="col-md-4">
+                                                <span class="flaticon-siren" style="text-align:center;font-size:100px;"></span>
+
+                                            </div>
+                                            <div class="col-md-4">
+
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                            </div>
+                                            <div class="col-md-8">
+                                                <p style="text-align:center"> Whoops! Looks Like Nothing Has Been Found.
+                                                    <br>
+                                                    <button type="button" ng-click="addNewAttraction()" class="btn btn-link"> + Add New Attraction</button>
+
+                                                </p>
+
+                                            </div>
+                                            <div class="col-md-2">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="color:#ff941e;" ng-hide="showSearchResult">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                            </div>
+                                            <div class="col-md-4">
+                                                <span class="flaticon-snorkel" style="text-align:center;font-size:100px;"></span>
+
+                                            </div>
+                                            <div class="col-md-4">
+
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                            </div>
+                                            <div class="col-md-8">
+                                                <p style="text-align:center"> Enter Keywords to Search.
+                                                    <br> Or Hit Leave It Blank to Get All.</p>
+
+                                            </div>
+                                            <div class="col-md-2">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div ng-show="showSearchResult" ng-repeat="attraction in searchResult">
+
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h3 class="panel-title">{{attraction.attractionName}}
+                                                    <button type="button" class="btn btn-link btn-sm" ng-click="openAddToPlanModal('lg',attraction)">Add To Plan</button>
+                                                    <button type="button" class="btn btn-link btn-sm" ng-click="openEditAttractionModal('lg',attraction)">Edit</button>
+
+                                                </h3>
+                                            </div>
+                                            <div class="panel-body">
+                                                <label>Address: </label> {{attraction.address}}
+                                                <br>
+                                                <label>Phone: </label> {{attraction.phone}}
+                                                <br>
+                                                <label>Website: </label>
+                                                <a href="{{attraction.website}}">{{attraction.website}}</a>
+                                                <br>
+                                                <label>Hours: </label> {{attraction.hours}}
+
+                                                <br>
+                                                <label>Ticket Info: </label> {{attraction.ticketInfo}}
+                                                <br>
+                                                <label>Parking Info: </label> {{attraction.parkingInfo}}
+                                                <br>
+                                                <label>Public Transportation: </label> {{attraction.publicTransport}}
+                                                <br>
+                                                <label>Notes: </label> {{attraction.notes}}
+
+                                                <br>
+                                                <label>Description:</label>
+                                                <span dd-text-collapse dd-text-collapse-max-length="110" dd-text-collapse-text="{{attraction.description}}"></span>
+
+                                                <br>
+                                                <img class="imageInAttractionBox" ng-src="{{attraction.picture1URL}}" alt="No image" onerror="this.onerror=null;this.src='../assets/noImage.png';"
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </uib-tab>
+                                <uib-tab index="1" heading="City Guide">
+                                    <uib-tab-heading class="ng-scope">
+                                        <span class="flaticon-panel"> City Guide</span>
+                                    </uib-tab-heading>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <!-- <h4>Import From Template</h4> -->
+                                            <div class="input-group">
+                                                <input ng-blur="importTemplate(templateSelected)" type="text" id="importTemplate" name="importTemplate" ng-model="templateSelected"
+                                                    ng-value="template" uib-typeahead="template as template.destinationCountry + ' (' + template.destinationCity + ')' for template in templateList | filter:$viewValue | limitTo:8"
+                                                    class="form-control" placeholder="Import From Template" autofocus>
+                                                <div class="input-group-btn">
+                                                    <button class="btn btn-default" ng-click="importTemplate(templateSelected)" type="button">
+                                                        <i class="glyphicon glyphicon-cloud-download"></i> Preview
+                                                    </button>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <button class="btn btn-success " ng-click="updatePlan(planSelected,destinationInfo)" type="button">
+                                                <i class="glyphicon glyphicon-floppy-save"></i> Import Template To Plan
+                                            </button>
+                                            <span>
+                                                {{saveTemplateToPlanText}}
+                                            </span>
+                                            <!-- <button class="btn btn-warning btn-block" ng-click="cancelChanges()" type="button">
+                                                                                                        <i class="glyphicon glyphicon-floppy-save"></i> Cancel
+                                                                                                      </button> -->
+
+                                        </div>
+
+
+                                    </div>
+                                </uib-tab>
+                                <!-- <uib-tab index="2" heading="Flights">
+                                                <uib-tab-heading class="ng-scope">
+                                                        <span class="flaticon-aeroplane"></span>
+                                                    </uib-tab-heading>
+                                        </uib-tab>
+                                        
+                                        <uib-tab index="3" heading="Lodges">
+                                                <uib-tab-heading class="ng-scope">
+                                                        <span class="flaticon-placeholder-12"></span>
+                                                    </uib-tab-heading>
+                                            </uib-tab>
+                                            <uib-tab index="4" heading="Transportation">
+                                                    <uib-tab-heading class="ng-scope">
+                                                            <span class="flaticon-bus"></span>
+                                                        </uib-tab-heading>
+                                                </uib-tab>
+                                                <uib-tab index="5" heading="Cruise">
+                                                        <uib-tab-heading class="ng-scope">
+                                                                <span class="flaticon-ship"></span>
+                                                            </uib-tab-heading>
+                                                    </uib-tab>
+                                                
+                                                    <uib-tab index="6" heading="Info">
+                                                            <uib-tab-heading class="ng-scope">
+                                                                    <span class="flaticon-placeholder-13"></span>
+                                                                </uib-tab-heading>
+                                                        </uib-tab>
+                                                         -->
+                            </uib-tabset>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div id="list_view" style="margin-right:305px;">
+                    <!-- <div hl-sticky="" style="margin-left:0px;" offset-top="300" anchor="top">
+                        <button style="background-color:rgba(58, 58, 141, 0.85); color:white" type="button" ng-click="toggleAttractionPanel()" class="btn btn-sm">
+                            <span class="glyphicon glyphicon-plus"></span> Add </button>
+                    </div> -->
+                    <div class="well tripDetailTitle">
+                        <div class="row">
+                            <div class="col-md-10">
+
+                                <span style="font-size:14pt;" ng-style="getReviewTextStyle(requestReviewText)">{{requestReviewText}}
+                                </span>
+                                <span ng-show="showDenialMessage">REASON: {{reviewObject[0].statusNotes}}</span>
+                                <button type="button" style="color:white; font-size:8pt;" ng-show="showReviewButton" ng-click="requestReview(planSelected, customerSelected)"
+                                    class="btn btn-link">
+                                    <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span> Request Review</button>
+                            </div>
+                            <div class="col-md-2">
+                                <button style="color:white ;float:right;" type="button" ng-click="toggleAttractionPanel()" class="btn btn-link btn-xs">Toggle Sidebar </button>
+
+
+                            </div>
+
+
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h2>{{planSelected.tripName}}
+                                    <!-- <a style="font-size:14pt; color:lightgray" ng-click="openDestinationInfoModal('lg',planSelected)"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></a> -->
+
+                                </h2>
+
+
+                            </div>
+                            <div class="col-md-6" style="text-align:right;">
+                                <p>{{planSelected.tripStart | date: 'fullDate'}} - {{planSelected.tripEnd | date: 'fullDate'}}
+                                </p>
+
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-9">
+
+                                <h4>
+                                    <strong>{{planSelected.tripOrigin}} , {{planSelected.tripStops}} , {{planSelected.tripFinalDestination}}
+                                    </strong>
+                                </h4>
+                            </div>
+                            <div class="col-md-3">
+
+                                <!-- <button style="float:right" class="btn btn-default" type="button" ng-click="isAllDateOpen = !isAllDateOpen">Expand/Collapse All</button> -->
+
+                                <div ng-show="isAdmin" style="float:right; margin-left:5px;" class="btn-group">
+                                    <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Admin
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu  dropdown-menu-right">
+                                        <!-- <li>
+                                                        <button class="btn btn-primary" type="button" ng-disabled="!reviewNotApproved"  ng-click="approveReview(planSelected)">Approve</button>
+                                                        
+                                                </li> -->
+                                        <li>
+                                            <button class="btn btn-link" type="button" style="color:green" ng-click="approveReview(planSelected,customerSelected)">
+                                                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Approve</button>
+                                        </li>
+                                        <li>
+                                            <button class="btn btn-link" type="button" style="color:red" ng-click="denyReview(planSelected,customerSelected)">
+                                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Deny</button>
+                                        </li>
+
+                                        <li role="separator" class="divider"></li>
+                                        <li>
+                                            <button class="btn btn-link" type="button">
+                                                <span class="glyphicon glyphicon glyphicon-envelope" aria-hidden="true"></span> Email {{reviewObject[0].requester}}</button>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div style="float:right;" class="btn-group">
+                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Actions
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-right">
+                                        <!-- <li>
+                                                                                                <button class="btn btn-primary" type="button" ng-disabled="!reviewNotApproved"  ng-click="approveReview(planSelected)">Approve</button>
+                                                                                                
+                                                                                        </li> -->
+                                        <!-- <li> <span style="color:black; padding-left:12px;"> Download PDF:
+                                                                                                <input type="checkbox" ng-model="download"> </span>
+                                        </li> -->
+                                        <li ng-show="isAdmin">
+                                            <span style="color:black; padding-left:12px;">Contains Chinese:
+                                                <input type="checkbox" ng-model="chinese">
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <button class="btn btn-link" type="button" ng-click="viewPDF(download,chinese)">
+                                                <span class="glyphicon glyphicon-file" aria-hidden="true"></span> View / Download PDF</button>
+                                        </li>
+                                        <li>
+                                            <button class="btn btn-link" type="button" ng-disabled="reviewNotApproved" ng-click="openSendEmailModal('lg',planSelected, customerSelected)">
+                                                <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Send Email</button>
+                                        </li>
+                                        <li>
+                                                <button class="btn btn-link" type="button" ng-disabled="reviewNotApproved" ng-click="getSharableCode(planSelected, customerSelected)">
+                                                    <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Get Shareable Code</button>
+                                            </li>
+
+                                        <li role="separator" class="divider"></li>
+                                        <li>
+                                            <button type="button" ng-disabled="disableReviewButton" ng-click="requestReview(planSelected, customerSelected)" class="btn btn-link">
+                                                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span> {{requestReviewButtonText}}</button>
+                                        </li>
+                                        <li role="separator" class="divider"></li>
+
+                                        <li>
+                                            <button class="btn btn-link" type="button" ng-click="openEditModal('lg',planSelected)">
+                                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edit Plan</button>
+                                        </li>
+
+
+                                        <li>
+                                            <button style="color:red" class="btn btn-link" type="button" ng-click="deleteCustomerPlan(planSelected.planID)">
+                                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Delete Plan</button>
+                                        </li>
+                                    </ul>
+
+                                </div>
+
+                            </div>
+
+
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-3" style="padding-left:0px; padding-right:0px; border-right:lightgray 1px solid">
+                        <div class="list-group" style="overflow-y: scroll; border-style:none;">
+                            <button  ng-class="{'active': activeItemIndex == -1}" type="button" ng-click="showDestinationMsgBtn()" data-toggle="collapse" data-target="#destinationInfoCollapse" class="list-group-item list-group-item-plan">
+                                 {{showDestinationMsg}}</button>
+                            <div ng-repeat="dayItem in processByDateList">
+                                <button ng-class="{'active': processByDateList.indexOf(dayItem) == activeItemIndex}" ng-click="showSelectedDay(dayItem, processByDateList.indexOf(dayItem))" type="button" class="list-group-item list-group-item-plan">
+                                    Day {{processByDateList.indexOf(dayItem)+1}}
+                                    <br> {{dayItem.dateList | limitTo : 15}}
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                    <div class="col-md-9" style="border-left:lightgray 1px solid">
+                        <!-- <button class="btn btn-default btn-block" ng-click="showDestinationMsgBtn()" style="font-size:12pt;" data-toggle="collapse"
+                            data-target="#destinationInfoCollapse">
+                            <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> {{showDestinationMsg}}</button>
+
+                        <br> -->
+                        <h4>{{dailyHeadingTitle}}</h4>
+                        <!-- <div id="destinationInfoCollapse" class="collapse" style="padding:10px; border-style: solid; border-radius: 5px; border-width: 1px; border-color: lightgrey;"> -->
+
+                        <div id="" ng-show="showDestinationInfo" style="padding:10px; border-style: solid; border-radius: 5px; border-width: 1px; border-color: lightgrey;">
+                     
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h4>Destination(s) Briefing</h4>
+                                    <a href="#" editable-textarea="planSelected.briefing" onaftersave="updatePlan(planSelected,destinationInfo)" e-rows="10"
+                                        e-cols="60">
+                                        <pre class="pre-tag-destination">{{ planSelected.briefing || 'no description' }}</pre>
+                                    </a>
+                                </div>
+
+
+
+
+                            </div>
+
+                            <h4>Flight(s) Information</h4>
+                            <a href="#" editable-textarea="planSelected.flights" onaftersave="updatePlan(planSelected,destinationInfo)" e-rows="10" e-cols="60">
+                                <pre class="pre-tag-destination">{{ planSelected.flights || 'no description' }}</pre>
+                            </a>
+                            <h4>Accomodation(s) Information</h4>
+                            <a href="#" editable-textarea="planSelected.accomodations" onaftersave="updatePlan(planSelected,destinationInfo)" e-rows="10"
+                                e-cols="60">
+                                <pre class="pre-tag-destination">{{ planSelected.accomodations || 'no description' }}</pre>
+                            </a>
+                            <h4>What To Pack?</h4>
+                            <a href="#" editable-textarea="planSelected.packing" onaftersave="updatePlan(planSelected,destinationInfo)" e-rows="10" e-cols="60">
+                                <pre class="pre-tag-destination">{{ planSelected.packing || 'no description' }}</pre>
+                            </a>
+
+                            <h4>All About This Trip</h4>
+                            <a href="#" editable-textarea="planSelected.aboutDestination" onaftersave="updatePlan(planSelected,destinationInfo)" e-rows="10"
+                                e-cols="60">
+                                <pre class="pre-tag-destination">{{ planSelected.aboutDestination || 'no description' }}</pre>
+                            </a>
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <h5>Weather</h5>
+                                    <a href="#" editable-textarea="planSelected.weather" onaftersave="updatePlan(planSelected,destinationInfo)" e-rows="10" e-cols="60">
+                                        <pre class="pre-tag-destination">{{ planSelected.weather || 'no description' }}</pre>
+                                    </a>
+                                </li>
+                                <!-- <li class="list-group-item">
+                                        <h5>Dressing</h5>
+        
+                                        <a href="#" editable-textarea="planSelected.dressing" onaftersave="updatePlan(planSelected,destinationInfo)" e-rows="10"
+                                            e-cols="100">
+                                            <pre class="pre-tag-destination">{{ planSelected.dressing || 'no description' }}</pre>
+                                        </a>
+                                    </li> -->
+                                <li class="list-group-item">
+                                    <h5>Payments</h5>
+
+                                    <a href="#" editable-textarea="planSelected.payments" onaftersave="updatePlan(planSelected,destinationInfo)" e-rows="10"
+                                        e-cols="60">
+                                        <pre class="pre-tag-destination">{{ planSelected.payments || 'no description' }}</pre>
+                                    </a>
+                                </li>
+                                <li class="list-group-item">
+                                    <h5>Electronics</h5>
+
+                                    <a href="#" editable-textarea="planSelected.electronics" onaftersave="updatePlan(planSelected,destinationInfo)" e-rows="10"
+                                        e-cols="60">
+                                        <pre class="pre-tag-destination">{{ planSelected.electronics || 'no description' }}</pre>
+                                    </a>
+                                </li>
+                                <li class="list-group-item">
+                                    <h5>Medical</h5>
+
+                                    <a href="#" editable-textarea="planSelected.medical" onaftersave="updatePlan(planSelected,destinationInfo)" e-rows="10" e-cols="60">
+                                        <pre class="pre-tag-destination">{{ planSelected.medical || 'no description' }}</pre>
+                                    </a>
+                                </li>
+                                <li class="list-group-item">
+                                    <h5>Time Zone</h5>
+
+                                    <a href="#" editable-textarea="planSelected.timeZone" onaftersave="updatePlan(planSelected,destinationInfo)" e-rows="10"
+                                        e-cols="60">
+                                        <pre class="pre-tag-destination">{{ planSelected.timeZone || 'no description' }}</pre>
+                                    </a>
+                                </li>
+                                <li class="list-group-item">
+                                    <h5>Language</h5>
+
+                                    <a href="#" editable-textarea="planSelected.language" onaftersave="updatePlan(planSelected,destinationInfo)" e-rows="10"
+                                        e-cols="60">
+                                        <pre class="pre-tag-destination">{{ planSelected.language || 'no description' }}</pre>
+                                    </a>
+                                </li>
+                                <li class="list-group-item">
+                                    <h5>Transportation</h5>
+
+                                    <a href="#" editable-textarea="planSelected.transportation" onaftersave="updatePlan(planSelected,destinationInfo)" e-rows="10"
+                                        e-cols="60">
+                                        <pre class="pre-tag-destination">{{ planSelected.transportation || 'no description' }}</pre>
+                                    </a>
+                                </li>
+                                <!-- <li class="list-group-item">
+                                        <h5>Telecommunication</h5>
+        
+                                        <a href="#" editable-textarea="planSelected.telecommunication" onaftersave="updatePlan(planSelected,destinationInfo)" e-rows="10"
+                                            e-cols="100">
+                                            <pre class="pre-tag-destination">{{ planSelected.telecommunication || 'no description' }}</pre>
+                                        </a>
+                                    </li> -->
+                                <li class="list-group-item">
+                                    <h5>Hotel</h5>
+
+                                    <a href="#" editable-textarea="planSelected.hotel" onaftersave="updatePlan(planSelected,destinationInfo)" e-rows="10" e-cols="60">
+                                        <pre class="pre-tag-destination">{{ planSelected.hotel || 'no description' }}</pre>
+                                    </a>
+                                </li>
+                                <li class="list-group-item">
+                                    <h5>Shopping</h5>
+
+                                    <a href="#" editable-textarea="planSelected.shopping" onaftersave="updatePlan(planSelected,destinationInfo)" e-rows="10"
+                                        e-cols="60">
+                                        <pre class="pre-tag-destination">{{ planSelected.shopping || 'no description' }}</pre>
+                                    </a>
+                                </li>
+                                <li class="list-group-item">
+                                    <h5>Dining</h5>
+
+                                    <a href="#" editable-textarea="planSelected.dining" onaftersave="updatePlan(planSelected,destinationInfo)" e-rows="10" e-cols="60">
+                                        <pre class="pre-tag-destination">{{ planSelected.dining || 'no description' }}</pre>
+                                    </a>
+                                </li>
+                                <!-- <li class="list-group-item">
+                                        <h5>Drinking Water</h5>
+        
+                                        <a href="#" editable-textarea="planSelected.drinkingWater" onaftersave="updatePlan(planSelected,destinationInfo)" e-rows="10"
+                                            e-cols="100">
+                                            <pre class="pre-tag-destination">{{ planSelected.drinkingWater || 'no description' }}</pre>
+                                        </a>
+                                    </li> -->
+                                <!-- <li class="list-group-item">
+                                        <h5>Electricity</h5>
+        
+                                        <a href="#" editable-textarea="planSelected.electricity" onaftersave="updatePlan(planSelected,destinationInfo)" e-rows="10"
+                                            e-cols="100">
+                                            <pre class="pre-tag-destination">{{ planSelected.electricity || 'no description' }}</pre>
+                                        </a>
+                                    </li> -->
+                                <!-- <li class="list-group-item">
+                                        <h5>Tips</h5>
+        
+                                        <a href="#" editable-textarea="planSelected.tips" onaftersave="updatePlan(planSelected,destinationInfo)" e-rows="10" e-cols="100">
+                                            <pre class="pre-tag-destination">{{ planSelected.tips || 'no description' }}</pre>
+                                        </a>
+                                    </li> -->
+                                <!-- <li class="list-group-item">
+                                        <h5>Public Areas</h5>
+        
+                                        <a href="#" editable-textarea="planSelected.publicAreas" onaftersave="updatePlan(planSelected,destinationInfo)" e-rows="10"
+                                            e-cols="100">
+                                            <pre class="pre-tag-destination">{{ planSelected.publicAreas || 'no description' }}</pre>
+                                        </a>
+                                    </li> -->
+                                <li class="list-group-item">
+                                    <h5>Culture</h5>
+
+                                    <a href="#" editable-textarea="planSelected.culture" onaftersave="updatePlan(planSelected,destinationInfo)" e-rows="10" e-cols="60">
+                                        <pre class="pre-tag-destination">{{ planSelected.culture || 'no description' }}</pre>
+                                    </a>
+                                </li>
+                                <li class="list-group-item">
+                                    <h5>Religion</h5>
+
+                                    <a href="#" editable-textarea="planSelected.religion" onaftersave="updatePlan(planSelected,destinationInfo)" e-rows="10"
+                                        e-cols="60">
+                                        <pre class="pre-tag-destination">{{ planSelected.religion || 'no description' }}</pre>
+                                    </a>
+                                </li>
+                                <!-- <li class="list-group-item">
+                                        <h5>Border Security</h5>
+        
+                                        <a href="#" editable-textarea="planSelected.borderSecurity" onaftersave="updatePlan(planSelected,destinationInfo)" e-rows="10"
+                                            e-cols="100">
+                                            <pre class="pre-tag-destination">{{ planSelected.borderSecurity || 'no description' }}</pre>
+                                        </a>
+                                    </li> -->
+                                <!-- <li class="list-group-item">
+                                        <h5>Safety</h5>
+        
+                                        <a href="#" editable-textarea="planSelected.safety" onaftersave="updatePlan(planSelected,destinationInfo)" e-rows="10" e-cols="100">
+                                            <pre class="pre-tag-destination">{{ planSelected.safety || 'no description' }}</pre>
+                                        </a>
+                                    </li> -->
+                                <li class="list-group-item">
+                                    <h5>Driving</h5>
+
+                                    <a href="#" editable-textarea="planSelected.driving" onaftersave="updatePlan(planSelected,destinationInfo)" e-rows="10" e-cols="60">
+                                        <pre class="pre-tag-destination">{{ planSelected.driving || 'no description' }}</pre>
+                                    </a>
+                                </li>
+                                <!-- <li class="list-group-item">
+                                        <h5>Locals</h5>
+        
+                                        <a href="#" editable-textarea="planSelected.locals" onaftersave="updatePlan(planSelected,destinationInfo)" e-rows="10" e-cols="100">
+                                            <pre class="pre-tag-destination">{{ planSelected.locals || 'no description' }}</pre>
+                                        </a>
+                                    </li> -->
+                                <li class="list-group-item">
+                                    <h5>Useful Phone Numbers</h5>
+
+                                    <a href="#" editable-textarea="planSelected.usefulPhone" onaftersave="updatePlan(planSelected,destinationInfo)" e-rows="10"
+                                        e-cols="60">
+                                        <pre class="pre-tag-destination">{{ planSelected.usefulPhone || 'no description' }}</pre>
+                                    </a>
+                                </li>
+                                <li class="list-group-item">
+                                    <h5>Others</h5>
+
+                                    <a href="#" editable-textarea="planSelected.others" onaftersave="updatePlan(planSelected,destinationInfo)" e-rows="10" e-cols="60">
+                                        <pre class="pre-tag-destination">{{ planSelected.others || 'no description' }}</pre>
+                                    </a>
+                                </li>
+                            </ul>
+                            <h4>Our Suggestions</h4>
+                            <a href="#" editable-textarea="planSelected.suggestions" onaftersave="updatePlan(planSelected,destinationInfo)" e-rows="10"
+                                e-cols="60">
+                                <pre class="pre-tag-destination">{{ planSelected.suggestions || 'no description' }}</pre>
+                            </a>
+
+
+
+
+                            <hr>
+                        </div>
+                        <!-- <uib-accordion close-others="oneAtATime">
+
+                            <div uib-accordion-group class="panel-default panelPlanView" heading="{{dateOpen.dateList | limitTo: 16}}" ng-model="dateOpenNow"
+                                ng-repeat="dateOpen in processByDateList | orderBy: myDateSortFunction" is-open="false">
+
+
+                                <uib-accordion close-others="oneAtATime">
+                                    <div uib-accordion-group class="panel-default panelPlanDetailView" ng-model="attractionOpen" ng-repeat="attraction in dateOpen.content | orderBy: 'visitStart'"
+                                        is-open="status.open">
+
+                                        <uib-accordion-heading>
+                                            {{attraction.visitStart | date : 'shortTime'}} - {{attraction.visitEnd | date : 'shortTime'}} | {{attraction.city}},{{attraction.state}}
+                                            <a>
+                                                <i class="pull-right glyphicon glyphicon-trash" ng-click="deletePlanEntry(attraction.entryID)"></i>
+                                            </a>
+                                            <a>
+                                                <i style="margin-right:10px;" class="pull-right glyphicon glyphicon-pencil" ng-click="editPlanEntry('lg',attraction)"></i>
+                                            </a>
+
+                                            <p> </p>
+                                            <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+
+                                            <p style="text-align:left;"> {{attraction.attractionName}} </p>
+
+
+                                        </uib-accordion-heading>
+
+                                        <div class="btn-group" ng-show="ifAccomodation(attraction.category)" uib-dropdown auto-close="disabled" is-open="status.isopen">
+
+                                            <a uib-dropdown-toggle ng-disabled="disabled" ng-click="getPlanHotelInfo(attraction.city,attraction.visitStart,attraction.visitEnd)">
+                                                <i class="glyphicon glyphicon-bed"></i> Search Hotels</a>
+                                            <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+                                                <div class="container">
+
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <label>City</label>
+                                                            <input type="text" ng-model="inputPlanHotelCity" class="form-control" style="border-top: 0;border-right: 0; border-left: 0; border-radius: 0; -webkit-box-shadow: none;box-shadow: none;">
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <label>Check In</label>
+
+                                                            <input type="text" ng-model="inputPlanHotelCheckin" class="form-control" style="border-top: 0;border-right: 0; border-left: 0; border-radius: 0; -webkit-box-shadow: none;box-shadow: none;">
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <label>Check Out</label>
+
+                                                            <input type="text" ng-model="inputPlanHotelCheckout" class="form-control" style="border-top: 0;border-right: 0; border-left: 0; border-radius: 0; -webkit-box-shadow: none;box-shadow: none;">
+                                                        </div>
+                                                        <div class="col-md-1">
+                                                            <label>Room #</label>
+
+                                                            <input type="number" ng-model="inputPlanHotelRoomNum" class="form-control" style="border-top: 0;border-right: 0; border-left: 0; border-radius: 0;-webkit-box-shadow: none;box-shadow: none;">
+                                                        </div>
+                                                        <div class="col-md-1">
+                                                            <label>Guest #</label>
+
+                                                            <input type="number" ng-model="inputPlanHotelGuestNum" class="form-control" style="border-top: 0;border-right: 0; border-left: 0; border-radius: 0; -webkit-box-shadow: none;box-shadow: none;">
+                                                        </div>
+                                                        <div class="col-md-1">
+                                                            <br>
+                                                            <button class="btn btn-link" ng-click="searchHotel(inputPlanHotelCity, inputPlanHotelCheckin, inputPlanHotelCheckout,inputPlanHotelRoomNum,inputPlanHotelGuestNum)">
+                                                                <i class="glyphicon glyphicon-search"></i> Compare</button>
+                                                        </div>
+                                                        <div class="col-md-1">
+                                                            <br>
+
+                                                            <button class="btn btn-link" ng-click="searchBooking(inputPlanHotelCity, inputPlanHotelCheckin, inputPlanHotelCheckout,inputPlanHotelRoomNum,inputPlanHotelGuestNum)">
+                                                                <i class="glyphicon glyphicon-search"></i> Search Booking.com</button>
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+
+                                            </ul>
+                                            <hr>
+
+
+                                        </div>
+
+                                        <div class="btn-group" ng-show="ifFoodDrinks(attraction.category)" uib-dropdown auto-close="disabled" is-open="status.isopen">
+                                            <a uib-dropdown-toggle ng-disabled="disabled" ng-click="getRestaurantInfo(attraction.city,attraction.attractionName,attraction.visitStart)">
+                                                <i class="glyphicon glyphicon-cutlery"></i> Search Restaurant</a>
+                                            <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+
+                                                <div class="container">
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <label>Name</label>
+                                                            <input type="text" ng-model="inputPlanRestaurantName" class="form-control" style="border-top: 0;border-right: 0; border-left: 0; border-radius: 0; -webkit-box-shadow: none;box-shadow: none;">
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <label>City</label>
+                                                            <input type="text" ng-model="inputPlanRestaurantCity" class="form-control" style="border-top: 0;border-right: 0; border-left: 0; border-radius: 0; -webkit-box-shadow: none;box-shadow: none;">
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <label>Reservation Date</label>
+
+                                                            <input type="text" ng-model="inputPlanRestaurantCheckinDate" class="form-control" style="border-top: 0;border-right: 0; border-left: 0; border-radius: 0; -webkit-box-shadow: none;box-shadow: none;">
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <label>Reservation Time</label>
+
+                                                            <input type="text" ng-model="inputPlanRestaurantCheckinTime" class="form-control" style="border-top: 0;border-right: 0; border-left: 0; border-radius: 0; -webkit-box-shadow: none;box-shadow: none;">
+                                                        </div>
+                                                        <div class="col-md-1">
+                                                            <label>Guest #</label>
+
+                                                            <input type="number" ng-model="inputPlanRestaurantGuestNum" class="form-control" style="border-top: 0;border-right: 0; border-left: 0; border-radius: 0; -webkit-box-shadow: none;box-shadow: none;">
+                                                        </div>
+
+
+                                                        <div class="col-md-1">
+                                                            <br>
+                                                            <button class="btn btn-link" ng-click="searchRestaurant(inputPlanRestaurantCity, inputPlanRestaurantName, inputPlanRestaurantCheckinDate, inputPlanRestaurantCheckinTime,inputPlanRestaurantGuestNum)">
+                                                                <i class="glyphicon glyphicon-search"></i> Search</button>
+
+                                                        </div>
+
+                                                    </div>
+                                                    <p>{{opentableWarning}}</p>
+
+                                                </div>
+
+                                            </ul>
+                                            <hr>
+
+                                        </div>
+
+
+                                        <div class="row">
+
+                                            <div class="col-md-3">
+                                                <label>Name</label> {{attraction.attractionName}}
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label>Category</label> {{attraction.category}}
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <label>Address</label> {{attraction.address}}
+                                            </div>
+                                            <div class="col-md-2">
+                                                <label>Phone</label> {{attraction.phone}}
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <label>Hours</label> {{attraction.hours}}
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label>Ticket</label> {{attraction.ticketInfo}}
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label>Website</label>
+                                                <a href="{{attraction.website}}">{{attraction.website}}</a>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <label>Reservation</label> {{attraction.reservationNeeded}}
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <label>Parking</label> {{attraction.parkingInfo}}
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label>Public Transit</label> {{attraction.publicTransport}}
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <label>GPS</label> {{attraction.GPSCoordinates}}
+                                            </div>
+                                            <div class="col-md-2">
+                                                <label>Time To Travel</label> {{attraction.timeToTravel}}
+                                            </div>
+
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+
+                                            <div class="col-md-9">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <label>Description</label> {{attraction.description}}
+
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <label>Notes</label> {{attraction.notes}}
+
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+
+                                                    <div class="col-md-12">
+                                                        <label>Memo</label> {{attraction.planEntrymemo}}
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+
+                                                    <div class="col-md-12">
+                                                        <label>Reservation Confirmation</label>
+                                                        <a target="_blank" href="../assets/Uploads/reservation/{{attraction.reservationFileLocation}}">{{attraction.reservationFileLocation}}</a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-3">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <img class="imageInAttractionBox" ng-src="{{attraction.picture1URL}}" alt="No image" onerror="this.onerror=null;this.src='../assets/noImage.png';"
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <img class="imageInAttractionBox" ng-src="{{attraction.picture2URL}}" alt="No image" onerror="this.onerror=null;this.src='../assets/noImage.png';"
+                                                        />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+                                    </div>
+
+
+
+
+                                </uib-accordion>
+
+                            </div>
+
+                        </uib-accordion> -->
+
+
+                        <div ng-hide="showDestinationInfo">
+                            <!-- {{selectedDayItem}} -->
+                            <uib-accordion close-others="oneAtATime">
+                                <div uib-accordion-group class="panel-default panelPlanDetailView" ng-model="attractionOpen" ng-repeat="attraction in selectedDayItem.content | orderBy: 'visitStart'"
+                                    is-open="status.isOpen">
+
+                                    <uib-accordion-heading>
+                                        {{attraction.visitStart | date : 'shortTime'}} - {{attraction.visitEnd | date : 'shortTime'}} | {{attraction.city}},{{attraction.state}}
+                                        <a>
+                                            <i class="pull-right glyphicon glyphicon-trash" ng-click="deletePlanEntry(attraction.entryID)"></i>
+                                        </a>
+                                        <a>
+                                            <i style="margin-right:10px;" class="pull-right glyphicon glyphicon-pencil" ng-click="editPlanEntry('lg',attraction)"></i>
+                                        </a>
+
+                                        <p> </p>
+                                        <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+
+                                        <p style="text-align:left;"> {{attraction.attractionName}} </p>
+
+
+                                    </uib-accordion-heading>
+
+                                    <div class="btn-group" ng-show="ifAccomodation(attraction.category)" uib-dropdown auto-close="disabled" is-open="status.isopen">
+
+                                        <a uib-dropdown-toggle ng-disabled="disabled" ng-click="getPlanHotelInfo(attraction.city,attraction.visitStart,attraction.visitEnd)">
+                                            <i class="glyphicon glyphicon-bed"></i> Search Hotels</a>
+                                        <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+                                            <div class="" style="padding:10px;width:400px">
+
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <label>City</label>
+                                                        <input type="text" ng-model="inputPlanHotelCity" class="form-control" style="border-top: 0;border-right: 0; border-left: 0; border-radius: 0; -webkit-box-shadow: none;box-shadow: none;">
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label>Check In</label>
+
+                                                        <input type="text" ng-model="inputPlanHotelCheckin" class="form-control" style="border-top: 0;border-right: 0; border-left: 0; border-radius: 0; -webkit-box-shadow: none;box-shadow: none;">
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label>Check Out</label>
+
+                                                        <input type="text" ng-model="inputPlanHotelCheckout" class="form-control" style="border-top: 0;border-right: 0; border-left: 0; border-radius: 0; -webkit-box-shadow: none;box-shadow: none;">
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+
+                                                    <div class="col-md-6">
+                                                        <label>Room #</label>
+
+                                                        <input type="number" ng-model="inputPlanHotelRoomNum" class="form-control" style="border-top: 0;border-right: 0; border-left: 0; border-radius: 0;-webkit-box-shadow: none;box-shadow: none;">
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label>Guest #</label>
+
+                                                        <input type="number" ng-model="inputPlanHotelGuestNum" class="form-control" style="border-top: 0;border-right: 0; border-left: 0; border-radius: 0; -webkit-box-shadow: none;box-shadow: none;">
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+
+                                                    <div class="col-md-6">
+                                                        <br>
+                                                        <button class="btn btn-link" ng-click="searchHotel(inputPlanHotelCity, inputPlanHotelCheckin, inputPlanHotelCheckout,inputPlanHotelRoomNum,inputPlanHotelGuestNum)">
+                                                            <i class="glyphicon glyphicon-search"></i> Compare</button>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <br>
+
+                                                        <button class="btn btn-link" ng-click="searchBooking(inputPlanHotelCity, inputPlanHotelCheckin, inputPlanHotelCheckout,inputPlanHotelRoomNum,inputPlanHotelGuestNum)">
+                                                            <i class="glyphicon glyphicon-search"></i> Search Booking.com</button>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+                                        </ul>
+                                        <hr>
+
+
+                                    </div>
+
+                                    <div class="btn-group" ng-show="ifFoodDrinks(attraction.category)" uib-dropdown auto-close="disabled" is-open="status.isopen">
+                                        <a uib-dropdown-toggle ng-disabled="disabled" ng-click="getRestaurantInfo(attraction.city,attraction.attractionName,attraction.visitStart)">
+                                            <i class="glyphicon glyphicon-cutlery"></i> Search Restaurant</a>
+                                        <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+
+                                            <div class="" style="padding:10px;width:400px">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label>Name</label>
+                                                        <input type="text" ng-model="inputPlanRestaurantName" class="form-control" style="border-top: 0;border-right: 0; border-left: 0; border-radius: 0; -webkit-box-shadow: none;box-shadow: none;">
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label>City</label>
+                                                        <input type="text" ng-model="inputPlanRestaurantCity" class="form-control" style="border-top: 0;border-right: 0; border-left: 0; border-radius: 0; -webkit-box-shadow: none;box-shadow: none;">
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+
+                                                    <div class="col-md-6">
+                                                        <label>Reservation Date</label>
+
+                                                        <input type="text" ng-model="inputPlanRestaurantCheckinDate" class="form-control" style="border-top: 0;border-right: 0; border-left: 0; border-radius: 0; -webkit-box-shadow: none;box-shadow: none;">
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label>Reservation Time</label>
+
+                                                        <input type="text" ng-model="inputPlanRestaurantCheckinTime" class="form-control" style="border-top: 0;border-right: 0; border-left: 0; border-radius: 0; -webkit-box-shadow: none;box-shadow: none;">
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label>Guest #</label>
+
+                                                        <input type="number" ng-model="inputPlanRestaurantGuestNum" class="form-control" style="border-top: 0;border-right: 0; border-left: 0; border-radius: 0; -webkit-box-shadow: none;box-shadow: none;">
+                                                    </div>
+
+
+                                                    <div class="col-md-6">
+                                                        <br>
+                                                        <button class="btn btn-link" ng-click="searchRestaurant(inputPlanRestaurantCity, inputPlanRestaurantName, inputPlanRestaurantCheckinDate, inputPlanRestaurantCheckinTime,inputPlanRestaurantGuestNum)">
+                                                            <i class="glyphicon glyphicon-search"></i> Search</button>
+
+                                                    </div>
+
+                                                </div>
+                                                <p>{{opentableWarning}}</p>
+
+                                            </div>
+
+                                        </ul>
+                                        <hr>
+
+                                    </div>
+
+
+                                    <div class="row">
+
+                                        <div class="col-md-3">
+                                            <label>Name</label> {{attraction.attractionName}}
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label>Category</label> {{attraction.category}}
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label>Address</label> {{attraction.address}}
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label>Phone</label> {{attraction.phone}}
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <label>Hours</label> {{attraction.hours}}
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label>Ticket</label> {{attraction.ticketInfo}}
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>Website</label>
+                                            <a href="{{attraction.website}}">{{attraction.website}}</a>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label>Reservation</label> {{attraction.reservationNeeded}}
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <label>Parking</label> {{attraction.parkingInfo}}
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label>Public Transit</label> {{attraction.publicTransport}}
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label>GPS</label> {{attraction.GPSCoordinates}}
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label>Time To Travel</label> {{attraction.timeToTravel}}
+                                        </div>
+
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+
+                                        <div class="col-md-12">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <label>Description</label> {{attraction.description}}
+
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <label>Notes</label> {{attraction.notes}}
+
+                                                </div>
+                                            </div>
+                                            <div class="row">
+
+                                                <div class="col-md-12">
+                                                    <label>Memo</label> {{attraction.planEntrymemo}}
+
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+
+                                                <div class="col-md-12">
+                                                    <label>Reservation Confirmation</label>
+                                                    <a target="_blank" href="../assets/Uploads/reservation/{{attraction.reservationFileLocation}}">{{attraction.reservationFileLocation}}</a>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <img class="imageInAttractionBox" ng-src="{{attraction.picture1URL}}" alt="No image" onerror="this.onerror=null;this.src='../assets/noImage.png';"
+                                            />
+                                            <img class="imageInAttractionBox" ng-src="{{attraction.picture2URL}}" alt="No image" onerror="this.onerror=null;this.src='../assets/noImage.png';"
+                                            />
+                                        </div>
+                                    </div>
+
+
+
+
+                                </div>
+
+
+
+
+                            </uib-accordion>
+
+                        </div>
+                    </div>
+
+
+
+
+
+
+                </div>
+
+            </uib-tab>
+
+
+            <uib-tab ng-show="isAdmin" index="1" select="createListForCalendar()" heading="Calendar View">
+
+                <div ng-controller="viewPlanCalendarCtrl" id="calendarDiv">
+
+                    <label>Select a view:</label>
+                    <button class="btn btn-default btn-sm" ng-click="displayCalendar('day')">Day</button>
+                    <button class="btn btn-default btn-sm" ng-click="displayCalendar('week')">Week</button>
+                    <button class="btn btn-default btn-sm" ng-click="displayCalendar('month')">Month</button>
+
+                    <button style="float:middle;" class="btn btn-link btn-sm" ng-click="refreshEvents('planViewCalendar')">
+                        <span class="glyphicon glyphicon-refresh" ng-click="refreshCustomerPlan()" aria-hidden="true"></span>Reload</button> {{alertMessage}}
+                    <button style="float:right;" ng-hide="hideCal" class="btn btn-success btn-sm" type="button" ng-click="updatePlanEntry('updateTime')">Save Updates</button>
+                    <!--<button class="btn btn-primary" type="button" ng-click="testSave()">Test Save</button>-->
+
+                    <div>
+
+                        <div ui-calendar="uiConfig.calendar" class="span8 calendar planCalendar" calendar="planViewCalendar" ng-model="eventSources"></div>
+
+                    </div>
+                    <!--<a class="large button" href="" ng-click="toggle()">Open Demo</a>-->
+
+                    <div pageslide ps-open="checked" style="margin-top:50px; padding-bottom:50px;" ps-size="400px">
+                        <br>
+                        <label style="margin-left:20px"> {{eventDetail.visitStart | date:'fullDate'}} </label>
+
+
+                        <label style="margin-left:10px;"> {{eventDetail.visitStart | date:'shortTime'}} - {{eventDetail.visitEnd | date:'shortTime'}}</label>
+                        <a ng-click="toggle()" style="float:right; margin-left:5px; margin-right:20px" class="button">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        </a>
+
+                        <div style="padding:20px" id="demo-right">
+                            <h2 style="margin-top:0px; color:#ff941e">{{eventDetail.attractionName}}
+                                <a>
+                                    <i style="font-size:16px;" class="pull-right glyphicon glyphicon-trash" ng-click="deletePlanEntry(eventDetail.entryID)"></i>
+                                </a>
+                                <a>
+                                    <i style="font-size:16px; margin-right:10px;" i class="pull-right glyphicon glyphicon-pencil" ng-click="editPlanEntry('lg',eventDetail.entryID)"></i>
+                                </a>
+
+                            </h2>
+
+                            <div class="well" style="padding:5px">
+
+                                <label>Memo: </label>
+                                <span dd-text-collapse dd-text-collapse-max-length="110" dd-text-collapse-text="{{eventDetail.planEntryMemo}}"></span>
+                            </div>
+                            <label>Category</label> {{eventDetail.category}}
+                            <br>
+                            <label>Address</label> {{eventDetail.address}}
+                            <br>
+                            <label>Phone</label> {{eventDetail.phone}}
+                            <br>
+                            <label>Hours</label> {{eventDetail.hours}}
+                            <br>
+                            <label>Ticket</label> {{eventDetail.ticketInfo}}
+                            <br>
+                            <label>Website</label>
+                            <a href="{{eventDetail.website}}">{{eventDetail.website}}</a>
+                            <br>
+                            <label>Reservation</label> {{eventDetail.reservationNeeded}}
+                            <br>
+                            <label>Parking</label> {{eventDetail.parkingInfo}}
+                            <br>
+                            <label>Public Transit</label> {{eventDetail.publicTransport}}
+                            <br>
+                            <label>GPS</label> {{eventDetail.GPSCoordinates}}
+                            <br>
+                            <!--<label>Description</label> {{eventDetail.description}}-->
+                            <label>Description</label>
+                            <span dd-text-collapse dd-text-collapse-max-length="110" dd-text-collapse-text="{{eventDetail.description}}"></span>
+
+                            <br>
+                            <label>Notes</label>
+                            <span dd-text-collapse dd-text-collapse-max-length="110" dd-text-collapse-text="{{eventDetail.notes}}"></span>
+
+                            <br>
+                            <img class="imageInAttractionBox" ng-src="{{eventDetail.picture1URL}}" alt="No image" onerror="this.onerror=null;this.src='../assets/noImage.png';"
+                            />
+                            <img class="imageInAttractionBox" ng-src="{{eventDetail.picture2URL}}" alt="No image" onerror="this.onerror=null;this.src='../assets/noImage.png';"
+                            />
+
+
+
+
+
+
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+
+            </uib-tab>
+        </uib-tabset>
+
+
+
+    </div>
+
+</div>
+</div>

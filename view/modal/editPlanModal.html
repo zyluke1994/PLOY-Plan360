@@ -1,0 +1,142 @@
+<div class="modal-header">
+
+    <FIELDSET>
+        <!-- Example row of columns -->
+        <form name="entryForm" id="database-form">
+       <div class="row">
+           <div class="col-md-7">
+            <h3 class="modal-title" id="modal-title">Plan ID: {{$ctrl.plan.planID}} </h3>
+        </div>
+                <div class="col-md-5" style="text-align:right">
+                    <span>             
+                <button class="btn btn-primary" type="button" ng-click="$ctrl.updatePlan($ctrl.plan)">Save</button>                
+                <!-- <button class="btn btn-primary" type="button" ng-click="$ctrl.testButton()">Test</button>                 -->
+                <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+        </span>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="inputTripName">Trip Name</label>
+                        <input type="text" ng-model="$ctrl.plan.tripName" class="form-control" id="inputTripName" name="inputTripName">
+                    </div>
+                </div>
+                <div class="col-md-3">
+
+                    <div class="dropdown form-group">
+                        <label>Trip Start Date</label>
+                        <a class="dropdown-toggle" id="inputTripStart" role="button" data-toggle="dropdown" data-target="#" href="">
+                            <div class="input-group date">
+                                <input type="text" class="form-control" data-ng-model="$ctrl.plan.tripStart">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                            </div>
+                        </a>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                            <datetimepicker data-ng-model="$ctrl.plan.tripStart" data-datetimepicker-config="{ dropdownSelector: '#inputTripStart', startView:'day', minView:'day',renderOn: 'trip_end-date-changed' }"
+                                data-on-set-time="trip_startDateOnSetTime()" data-before-render="trip_startDateBeforeRender($dates)"></datetimepicker>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3">
+
+                    <div class="dropdown form-group">
+                        <label>Trip End Date</label>
+                        <a class="dropdown-toggle" id="inputTripEnd" role="button" data-toggle="dropdown" data-target="#" href="">
+                            <div class="input-group date">
+                                <input type="text" class="form-control" data-ng-model="$ctrl.plan.tripEnd">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                            </div>
+                        </a>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                            <datetimepicker data-ng-model="$ctrl.plan.tripEnd" data-datetimepicker-config="{ dropdownSelector: '#inputTripEnd', startView:'day', minView:'day',renderOn: 'trip_start-date-changed' }"
+                                data-on-set-time="trip_endDateOnSetTime()" data-before-render="trip_endDateBeforeRender($view, $dates, $leftDate, $upDate, $rightDate)"></datetimepicker>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="inputTripOrigin">Trip Starting Origin</label>
+                        <input type="text" ng-model="$ctrl.plan.tripOrigin" class="form-control" id="inputTripOrigin" name="inputTripOrigin">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="inputTripStops">Trip Stops Within</label>
+                        <textarea type="text" ng-model="$ctrl.plan.tripStops" class="form-control" id="inputTripStops" placeholder="Separate by comma ',' "
+                            name="inputTripStops" rows="2"></textarea>
+                    </div>
+
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="inputTripFinalDestination">Trip Final Destination</label>
+                        <input type="text" ng-model="$ctrl.plan.tripFinalDestination" class="form-control" id="inputTripFinalDestination" name="inputTripFinalDestination">
+                    </div>
+                </div>
+
+
+            </div>
+            <!-- <div class="row">
+                
+                <div class="col-md-3">
+
+                    <div class="dropdown form-group">
+                        <label>Plan Start Date</label>
+                        <a class="dropdown-toggle" id="inputPlanStart" role="button" data-toggle="dropdown" data-target="#" href="">
+                            <div class="input-group date">
+                                <input type="text" class="form-control" data-ng-model="$ctrl.plan.planStart">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                            </div>
+                        </a>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                            <datetimepicker data-ng-model="$ctrl.plan.planStart" data-datetimepicker-config="{ dropdownSelector: '#inputPlanStart', startView:'day', minView:'day',renderOn: 'plan_end-date-changed' }"
+                                data-on-set-time="plan_startDateOnSetTime()" data-before-render="plan_startDateBeforeRender($dates)"></datetimepicker>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3">
+
+                    <div class="dropdown form-group">
+                        <label>Plan Deadline Date</label>
+                        <a class="dropdown-toggle" id="inputPlanDeadline" role="button" data-toggle="dropdown" data-target="#" href="">
+                            <div class="input-group date">
+                                <input type="text" class="form-control" data-ng-model="$ctrl.plan.planDeadline">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                            </div>
+                        </a>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                            <datetimepicker data-ng-model="$ctrl.plan.planDeadline" data-datetimepicker-config="{ dropdownSelector: '#inputPlanDeadline', startView:'day', minView:'day',renderOn: 'plan_start-date-changed' }"
+                                data-on-set-time="plan_endDateOnSetTime()" data-before-render="plan_endDateBeforeRender($view, $dates, $leftDate, $upDate, $rightDate)"></datetimepicker>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="inputNotes">Notes</label>
+                        <textarea type="text" ng-model="$ctrl.plan.notes" class="form-control" id="inputNotes" placeholder="# of Travellers, Nationalities, Purpose, etc"
+                            name="inputNotes" rows="4"></textarea>
+                    </div>
+
+                </div>
+
+
+            </div>
+      -->
+
+
+
+        </form>
+
+        <!-- /container -->
+    </FIELDSET>
+
+
+
+
+
+</div>

@@ -1,0 +1,34 @@
+{
+  "name": "angular-timelinejs3",
+  "appPath": "app",
+  "version": "0.2.3",
+  "description": "An angular directive for Timeline JS3",
+  "homepage": "https://github.com/fmaturel/angular-timelinejs3",
+  "license": "MIT",
+  "main": [
+    "dist/js/ng-timeline.js"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "test"
+  ],
+  "dependencies": {
+    "angular": "~1.4.0",
+    "angular-route": "~1.4.0",
+    "TimelineJS3": "https://github.com/fmaturel/TimelineJS3.git#3.3.12"
+  },
+  "devDependencies": {
+    "angular-mocks": "~1.4.0"
+  },
+  "_release": "0.2.3",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.2.3",
+    "commit": "61a1d5dfc4a1947ceed78dd59cb604cf2bd5bf2c"
+  },
+  "_source": "https://github.com/fmaturel/angular-timelinejs3.git",
+  "_target": "^0.2.3",
+  "_originalSource": "angular-timelinejs3",
+  "_direct": true
+}

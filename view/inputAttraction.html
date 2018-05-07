@@ -1,0 +1,289 @@
+<div>
+
+
+
+    <FIELDSET>
+        <div class="container" ng-controller="inputAttractionCtrl">
+            <!-- Example row of columns -->
+            <form name="entryForm" id="database-form">
+                <div class="row">
+
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="inputCountry">Country</label>
+
+                            <select class="form-control" ng-model="country" id="inputCountry" name="inputCountry" autofocus required>
+                    <option value ="United States" >United States</option>
+                    <option value = "Canada">Canada</option>
+                    <option value = "Puerto Rico">Puerto Rico</option>
+                </select>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="inputState">State</label>
+                            <input type="text" ng-model="state" class="form-control" id="inputState" placeholder="NY" name="inputState" required>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="inputCity">City</label>
+                            <input type="text" ng-model="city" class="form-control" id="inputCity" placeholder="Rochester" name="inputCity" required>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="inputGPS">GPS Coordinates</label>
+                            <input type="text" ng-model="GPS" ng-value="address.geometry.location.lat + ', '+address.geometry.location.lng" class="form-control"
+                                id="inputGPS" placeholder="12.1223, -23.2345" name="inputGPS" required>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="inputName"><img style="max-width:15px;" ng-src="{{attractionIcon}}"/>Attraction Name <span ng-hide="loadingHide"> ...Loading</span></label>
+                            <input type="text" gm-places-autocomplete ng-model="attractionName" class="form-control" required/>
+                            <!--<a ng-click="getAttractionID(attractionSelect)"><i class="glyphicon glyphicon-search"></i></a>-->
+
+
+                            <!--<input type="text" ng-model="attractionName" class="form-control" id="inputName" name="inputName">-->
+                        </div>
+
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="inputCategory">Category</label>
+
+
+                            <select class="form-control" ng-model="category" id="inputCategory" name="inputCategory" required>
+                    <option>Accommodations</option>
+                    <option>Food and Drinks</option>
+                    <option>Museums</option>
+                    <option>Outdoor Activities</option>
+                    <option>Sports</option>
+                    <option>Transportation</option>
+                    <option>Tours and Activities</option>
+                    <option>Nightlife</option>
+                    <option>Classes and Workshops</option>
+                    <option>Shopping</option>
+                    <option>Nature and Parks</option>
+                    <option>Fun and Games</option>
+                    <option>Spas and Wellness</option>
+                    <option>Theater and Concerts</option>
+                    <option>Zoos and Aquariums</option>
+                    <option>Traveler Resources</option>
+                    <option>Amusement Parks</option>
+                    <option>Boat Tours and Water</option>
+                    <option>Events</option>
+                    <option>Casino and Gambling</option>
+                    <option>Other</option>
+
+                  </select>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="duration">Duration Suggested (Hours)</label>
+                            <select class="form-control" ng-model="duration" id="duration" name="duration" required>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                  </select>
+                        </div>
+
+                    </div>
+
+
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="inputAddress">Address</label>
+                            <input type="text" ng-model="addressIn" class="form-control" id="inputAddress" name="inputAddress" required>
+                            
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="inputPhone">Phone</label>
+                            <input type="text" ng-model="phone" class="form-control" id="inputPhone" name="inputPhone" required>
+                        </div>
+
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="inputWebsite">Website</label>
+                            <input type="text" ng-model="website" class="form-control" id="inputWebsite" name="inputWebsite" required>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="row">
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="inputTicket">Ticket Info</label>
+                            <textarea type="text" ng-model="ticket" class="form-control" id="inputTicket" placeholder="" name="inputTicket" rows="3"></textarea>
+                        </div>
+
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="inputParking">Parking Info</label>
+                            <textarea type="text" ng-model="parking" class="form-control" id="inputParking" name="inputParking" rows="3"></textarea>
+                        </div>
+
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="inputPublicTrans">Public Transportation Info</label>
+                            <textarea type="text" ng-model="publicTrans" class="form-control" id="inputPublicTrans" name="inputPublicTrans" rows="3"></textarea>
+                        </div>
+
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="inputHours">Hours</label>
+                            <textarea type="text" ng-model="hours" class="form-control" id="inputHours" placeholder="N/A" name="inputHours" rows="3"></textarea>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <label for="inputDetails">Details</label> <a style="float:right;" ng-click="getAttractionFromWiki(attractionName)"> <span class="glyphicon glyphicon-download" aria-hidden="true"></span>
+Fetch Info & Images</a> <span class="glyphicon glyphicon-info-sign" tooltip-placement="top-left" uib-tooltip="Plugin Required for Wikipedia Data Fetch. Please download, install and enable Chrome Extension - 'Allow-Control-Allow-Origin: *'"  aria-hidden="true"></span>
+                            <div class=well ng-hide="wikiLinks">
+                                <strong>Choose from below:</strong>
+                                <span style="float:right;" class="glyphicon glyphicon-remove" ng-click="wikiLinks=true" aria-hidden="true"></span>
+                                <ul>
+                                    <li ng-repeat=" wikiPage in wikiPageList">
+                                        <a ng-click="getWikiLinkContent(wikiPage)">{{wikiPage}}</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <textarea type="text" ng-model="details" class="form-control" id="inputDetails" name="inputDetails" rows="5" required></textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="inputPhone">Other Notes</label>
+                            <textarea type="text" ng-model="notes" class="form-control" id="inputNotes" name="inputNotes" rows="5"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="inputURL1" >Photo URL 1</label>
+                            <img src="{{photoURL1}}" style="float:right;max-height: 60px;">
+                            <input type="text" ng-model="photoURL1" class="form-control" id="inputURL1" name="inputURL1">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="inputURL2">Photo URL 2</label>
+                                                        <img src="{{photoURL2}}" style="float:right;max-height: 60px;">
+
+                            <input type="text" ng-model="photoURL2" class="form-control" id="inputURL2" name="inputURL2">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="recommend">Recommend</label>
+                            <!--<select class="form-control" ng-model="recommend" id="recommend" name="recommend">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                  </select>-->
+                            <br>
+                            <span uib-rating ng-model="recommend" max="5" on-hover="hoveringOver(value)" on-leave="overStar = null" aria-labelledby="default-rating"></span>
+                        </div>
+
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="inputReservation">Reservation Needed</label>
+                            <input type="checkbox" ng-model="reservation" class="form-control" id="inputReservation" name="inputReservation" value="">
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row well" ng-hide="imageSelect">
+                        <div ng-repeat=" item in attractionPhotoListFilter">
+                            <div class="col-xs-6 col-md-3">
+                                <a ng-click="insertToForm(item)" class="thumbnail">
+                                 <img src="{{item}}" alt="none" style="max-height: 160px;">
+                                 </a>
+                            </div>
+
+                        </div>
+
+   
+</select>
+                  
+                </div>
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="inputBy">Inputted By</label>
+                            <input type="text" ng-model="inputBy" class="form-control" id="inputBy" name="inputBy" disabled>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="inputCrosscheck">Cross-Checked By</label>
+                            <input type="text" ng-model="crossCheck" class="form-control" id="inputCrosscheck" name="inputCrosscheck">
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <strong>Please double check all information above before submit.</strong>
+                        <br>
+                        <button ng-click="insertAttraction()" class="btn btn-success">Submit</button>
+                        <div class="success" style="display:none">
+                            <p>Success!</p>
+                        </div>
+                        <div class="error" style="display:none">
+                            <p>Error!</p>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div id="form-messages"></div>
+                </div>
+                <br>
+
+
+
+
+            </form>
+
+        </div>
+        <!-- /container -->
+    </FIELDSET>
+
+
+
+
+
+</div>

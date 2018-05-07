@@ -1,0 +1,277 @@
+    /*
+    Flaticon icon font: Flaticon
+    Creation date: 24/11/2016 10:09
+    */
+
+    @font-face {
+  font-family: "Flaticon";
+  src: url("./Flaticon.eot");
+  src: url("./Flaticon.eot?#iefix") format("embedded-opentype"),
+       url("./Flaticon.woff") format("woff"),
+       url("./Flaticon.ttf") format("truetype"),
+       url("./Flaticon.svg#Flaticon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: "Flaticon";
+    src: url("./Flaticon.svg#Flaticon") format("svg");
+  }
+}
+
+    .fi:before{
+        display: inline-block;
+  font-family: "Flaticon";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  line-height: 1;
+  text-decoration: inherit;
+  text-rendering: optimizeLegibility;
+  text-transform: none;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+    }
+
+    .flaticon-aeroplane:before { content: "\f100"; }
+.flaticon-aeroplane-1:before { content: "\f101"; }
+.flaticon-anchor:before { content: "\f102"; }
+.flaticon-anchor-1:before { content: "\f103"; }
+.flaticon-battery:before { content: "\f104"; }
+.flaticon-bicycle:before { content: "\f105"; }
+.flaticon-bicycle-1:before { content: "\f106"; }
+.flaticon-bus:before { content: "\f107"; }
+.flaticon-bus-1:before { content: "\f108"; }
+.flaticon-bus-2:before { content: "\f109"; }
+.flaticon-bus-3:before { content: "\f10a"; }
+.flaticon-bus-4:before { content: "\f10b"; }
+.flaticon-cable-car-cabin:before { content: "\f10c"; }
+.flaticon-car:before { content: "\f10d"; }
+.flaticon-car-1:before { content: "\f10e"; }
+.flaticon-car-2:before { content: "\f10f"; }
+.flaticon-concrete-mixer:before { content: "\f110"; }
+.flaticon-dashboard:before { content: "\f111"; }
+.flaticon-flip-flops:before { content: "\f112"; }
+.flaticon-fuel:before { content: "\f113"; }
+.flaticon-gas-station:before { content: "\f114"; }
+.flaticon-gps:before { content: "\f115"; }
+.flaticon-helicopter:before { content: "\f116"; }
+.flaticon-helm:before { content: "\f117"; }
+.flaticon-helmet:before { content: "\f118"; }
+.flaticon-hot-air-balloon:before { content: "\f119"; }
+.flaticon-ice-cream:before { content: "\f11a"; }
+.flaticon-ice-cream-1:before { content: "\f11b"; }
+.flaticon-island:before { content: "\f11c"; }
+.flaticon-island-1:before { content: "\f11d"; }
+.flaticon-key:before { content: "\f11e"; }
+.flaticon-lifeguard:before { content: "\f11f"; }
+.flaticon-map:before { content: "\f120"; }
+.flaticon-map-1:before { content: "\f121"; }
+.flaticon-map-10:before { content: "\f122"; }
+.flaticon-map-11:before { content: "\f123"; }
+.flaticon-map-12:before { content: "\f124"; }
+.flaticon-map-2:before { content: "\f125"; }
+.flaticon-map-3:before { content: "\f126"; }
+.flaticon-map-4:before { content: "\f127"; }
+.flaticon-map-5:before { content: "\f128"; }
+.flaticon-map-6:before { content: "\f129"; }
+.flaticon-map-7:before { content: "\f12a"; }
+.flaticon-map-8:before { content: "\f12b"; }
+.flaticon-map-9:before { content: "\f12c"; }
+.flaticon-panel:before { content: "\f12d"; }
+.flaticon-parking:before { content: "\f12e"; }
+.flaticon-pedestrian:before { content: "\f12f"; }
+.flaticon-pin:before { content: "\f130"; }
+.flaticon-placeholder:before { content: "\f131"; }
+.flaticon-placeholder-1:before { content: "\f132"; }
+.flaticon-placeholder-10:before { content: "\f133"; }
+.flaticon-placeholder-11:before { content: "\f134"; }
+.flaticon-placeholder-12:before { content: "\f135"; }
+.flaticon-placeholder-13:before { content: "\f136"; }
+.flaticon-placeholder-14:before { content: "\f137"; }
+.flaticon-placeholder-15:before { content: "\f138"; }
+.flaticon-placeholder-16:before { content: "\f139"; }
+.flaticon-placeholder-17:before { content: "\f13a"; }
+.flaticon-placeholder-18:before { content: "\f13b"; }
+.flaticon-placeholder-19:before { content: "\f13c"; }
+.flaticon-placeholder-2:before { content: "\f13d"; }
+.flaticon-placeholder-20:before { content: "\f13e"; }
+.flaticon-placeholder-21:before { content: "\f13f"; }
+.flaticon-placeholder-22:before { content: "\f140"; }
+.flaticon-placeholder-23:before { content: "\f141"; }
+.flaticon-placeholder-24:before { content: "\f142"; }
+.flaticon-placeholder-25:before { content: "\f143"; }
+.flaticon-placeholder-26:before { content: "\f144"; }
+.flaticon-placeholder-3:before { content: "\f145"; }
+.flaticon-placeholder-4:before { content: "\f146"; }
+.flaticon-placeholder-5:before { content: "\f147"; }
+.flaticon-placeholder-6:before { content: "\f148"; }
+.flaticon-placeholder-7:before { content: "\f149"; }
+.flaticon-placeholder-8:before { content: "\f14a"; }
+.flaticon-placeholder-9:before { content: "\f14b"; }
+.flaticon-road:before { content: "\f14c"; }
+.flaticon-routes:before { content: "\f14d"; }
+.flaticon-sailboat:before { content: "\f14e"; }
+.flaticon-sailboat-1:before { content: "\f14f"; }
+.flaticon-sailboat-2:before { content: "\f150"; }
+.flaticon-sand-bucket:before { content: "\f151"; }
+.flaticon-ship:before { content: "\f152"; }
+.flaticon-siren:before { content: "\f153"; }
+.flaticon-snorkel:before { content: "\f154"; }
+.flaticon-speedometer:before { content: "\f155"; }
+.flaticon-stairs:before { content: "\f156"; }
+.flaticon-stairs-1:before { content: "\f157"; }
+.flaticon-starfish:before { content: "\f158"; }
+.flaticon-submarine:before { content: "\f159"; }
+.flaticon-suitcase:before { content: "\f15a"; }
+.flaticon-sun:before { content: "\f15b"; }
+.flaticon-sun-cream:before { content: "\f15c"; }
+.flaticon-sun-cream-1:before { content: "\f15d"; }
+.flaticon-sun-cream-2:before { content: "\f15e"; }
+.flaticon-sun-umbrella:before { content: "\f15f"; }
+.flaticon-sun-umbrella-1:before { content: "\f160"; }
+.flaticon-sunglasses:before { content: "\f161"; }
+.flaticon-surf:before { content: "\f162"; }
+.flaticon-surf-1:before { content: "\f163"; }
+.flaticon-surf-2:before { content: "\f164"; }
+.flaticon-taxi:before { content: "\f165"; }
+.flaticon-taxi-1:before { content: "\f166"; }
+.flaticon-timer:before { content: "\f167"; }
+.flaticon-traffic-light:before { content: "\f168"; }
+.flaticon-traffic-light-1:before { content: "\f169"; }
+.flaticon-trailer:before { content: "\f16a"; }
+.flaticon-train:before { content: "\f16b"; }
+.flaticon-train-1:before { content: "\f16c"; }
+.flaticon-train-2:before { content: "\f16d"; }
+.flaticon-trolley:before { content: "\f16e"; }
+.flaticon-truck:before { content: "\f16f"; }
+.flaticon-truck-1:before { content: "\f170"; }
+.flaticon-truck-2:before { content: "\f171"; }
+.flaticon-tunnel:before { content: "\f172"; }
+.flaticon-van:before { content: "\f173"; }
+.flaticon-vespa:before { content: "\f174"; }
+.flaticon-window:before { content: "\f175"; }
+.flaticon-zeppelin:before { content: "\f176"; }
+    
+    $font-Flaticon-aeroplane: "\f100";
+    $font-Flaticon-aeroplane-1: "\f101";
+    $font-Flaticon-anchor: "\f102";
+    $font-Flaticon-anchor-1: "\f103";
+    $font-Flaticon-battery: "\f104";
+    $font-Flaticon-bicycle: "\f105";
+    $font-Flaticon-bicycle-1: "\f106";
+    $font-Flaticon-bus: "\f107";
+    $font-Flaticon-bus-1: "\f108";
+    $font-Flaticon-bus-2: "\f109";
+    $font-Flaticon-bus-3: "\f10a";
+    $font-Flaticon-bus-4: "\f10b";
+    $font-Flaticon-cable-car-cabin: "\f10c";
+    $font-Flaticon-car: "\f10d";
+    $font-Flaticon-car-1: "\f10e";
+    $font-Flaticon-car-2: "\f10f";
+    $font-Flaticon-concrete-mixer: "\f110";
+    $font-Flaticon-dashboard: "\f111";
+    $font-Flaticon-flip-flops: "\f112";
+    $font-Flaticon-fuel: "\f113";
+    $font-Flaticon-gas-station: "\f114";
+    $font-Flaticon-gps: "\f115";
+    $font-Flaticon-helicopter: "\f116";
+    $font-Flaticon-helm: "\f117";
+    $font-Flaticon-helmet: "\f118";
+    $font-Flaticon-hot-air-balloon: "\f119";
+    $font-Flaticon-ice-cream: "\f11a";
+    $font-Flaticon-ice-cream-1: "\f11b";
+    $font-Flaticon-island: "\f11c";
+    $font-Flaticon-island-1: "\f11d";
+    $font-Flaticon-key: "\f11e";
+    $font-Flaticon-lifeguard: "\f11f";
+    $font-Flaticon-map: "\f120";
+    $font-Flaticon-map-1: "\f121";
+    $font-Flaticon-map-10: "\f122";
+    $font-Flaticon-map-11: "\f123";
+    $font-Flaticon-map-12: "\f124";
+    $font-Flaticon-map-2: "\f125";
+    $font-Flaticon-map-3: "\f126";
+    $font-Flaticon-map-4: "\f127";
+    $font-Flaticon-map-5: "\f128";
+    $font-Flaticon-map-6: "\f129";
+    $font-Flaticon-map-7: "\f12a";
+    $font-Flaticon-map-8: "\f12b";
+    $font-Flaticon-map-9: "\f12c";
+    $font-Flaticon-panel: "\f12d";
+    $font-Flaticon-parking: "\f12e";
+    $font-Flaticon-pedestrian: "\f12f";
+    $font-Flaticon-pin: "\f130";
+    $font-Flaticon-placeholder: "\f131";
+    $font-Flaticon-placeholder-1: "\f132";
+    $font-Flaticon-placeholder-10: "\f133";
+    $font-Flaticon-placeholder-11: "\f134";
+    $font-Flaticon-placeholder-12: "\f135";
+    $font-Flaticon-placeholder-13: "\f136";
+    $font-Flaticon-placeholder-14: "\f137";
+    $font-Flaticon-placeholder-15: "\f138";
+    $font-Flaticon-placeholder-16: "\f139";
+    $font-Flaticon-placeholder-17: "\f13a";
+    $font-Flaticon-placeholder-18: "\f13b";
+    $font-Flaticon-placeholder-19: "\f13c";
+    $font-Flaticon-placeholder-2: "\f13d";
+    $font-Flaticon-placeholder-20: "\f13e";
+    $font-Flaticon-placeholder-21: "\f13f";
+    $font-Flaticon-placeholder-22: "\f140";
+    $font-Flaticon-placeholder-23: "\f141";
+    $font-Flaticon-placeholder-24: "\f142";
+    $font-Flaticon-placeholder-25: "\f143";
+    $font-Flaticon-placeholder-26: "\f144";
+    $font-Flaticon-placeholder-3: "\f145";
+    $font-Flaticon-placeholder-4: "\f146";
+    $font-Flaticon-placeholder-5: "\f147";
+    $font-Flaticon-placeholder-6: "\f148";
+    $font-Flaticon-placeholder-7: "\f149";
+    $font-Flaticon-placeholder-8: "\f14a";
+    $font-Flaticon-placeholder-9: "\f14b";
+    $font-Flaticon-road: "\f14c";
+    $font-Flaticon-routes: "\f14d";
+    $font-Flaticon-sailboat: "\f14e";
+    $font-Flaticon-sailboat-1: "\f14f";
+    $font-Flaticon-sailboat-2: "\f150";
+    $font-Flaticon-sand-bucket: "\f151";
+    $font-Flaticon-ship: "\f152";
+    $font-Flaticon-siren: "\f153";
+    $font-Flaticon-snorkel: "\f154";
+    $font-Flaticon-speedometer: "\f155";
+    $font-Flaticon-stairs: "\f156";
+    $font-Flaticon-stairs-1: "\f157";
+    $font-Flaticon-starfish: "\f158";
+    $font-Flaticon-submarine: "\f159";
+    $font-Flaticon-suitcase: "\f15a";
+    $font-Flaticon-sun: "\f15b";
+    $font-Flaticon-sun-cream: "\f15c";
+    $font-Flaticon-sun-cream-1: "\f15d";
+    $font-Flaticon-sun-cream-2: "\f15e";
+    $font-Flaticon-sun-umbrella: "\f15f";
+    $font-Flaticon-sun-umbrella-1: "\f160";
+    $font-Flaticon-sunglasses: "\f161";
+    $font-Flaticon-surf: "\f162";
+    $font-Flaticon-surf-1: "\f163";
+    $font-Flaticon-surf-2: "\f164";
+    $font-Flaticon-taxi: "\f165";
+    $font-Flaticon-taxi-1: "\f166";
+    $font-Flaticon-timer: "\f167";
+    $font-Flaticon-traffic-light: "\f168";
+    $font-Flaticon-traffic-light-1: "\f169";
+    $font-Flaticon-trailer: "\f16a";
+    $font-Flaticon-train: "\f16b";
+    $font-Flaticon-train-1: "\f16c";
+    $font-Flaticon-train-2: "\f16d";
+    $font-Flaticon-trolley: "\f16e";
+    $font-Flaticon-truck: "\f16f";
+    $font-Flaticon-truck-1: "\f170";
+    $font-Flaticon-truck-2: "\f171";
+    $font-Flaticon-tunnel: "\f172";
+    $font-Flaticon-van: "\f173";
+    $font-Flaticon-vespa: "\f174";
+    $font-Flaticon-window: "\f175";
+    $font-Flaticon-zeppelin: "\f176";
