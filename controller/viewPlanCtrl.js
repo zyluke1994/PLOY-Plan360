@@ -444,7 +444,10 @@ app.controller('viewPlanCtrl', function ($scope, $http, $rootScope, $uibModal, $
             var recepientName = planSelected.plannerName;
             var senderName = "";
             var senderEmail = "";
+            console.log(planSelected);
 
+            console.log(recepientEmail);
+            console.log(recepientName);
             console.log(sendEmailService.sendEmailNoAttachment(emailSubject, emailContent, recepientEmail, recepientName, senderName, senderEmail));
 
             $scope.requestReviewText = "Approved";
@@ -1185,6 +1188,7 @@ app.controller('viewPlanCtrl', function ($scope, $http, $rootScope, $uibModal, $
             $scope.requestReviewText = "Review Not Requested";
             $scope.reviewRequested = false;
             $scope.planSelected = {};
+            $scope.clientIDSelected ="";
             console.log("yes planID from home");
             $scope.planSelected.planID = $rootScope.planIDFromHome;
             $http.get("../api/plans/getPlans.php", {
@@ -1193,23 +1197,24 @@ app.controller('viewPlanCtrl', function ($scope, $http, $rootScope, $uibModal, $
                 $scope.planSelected = response.data[0];
                 $scope.clientIDSelected = response.data[0].customerID;
                 console.log(response.data);
+                $http.get("../api/customers/getCustomer.php", {
+                    params: { customerID: $scope.clientIDSelected }
+                }).then(function (response) {
+                    // console.log("Get customer selected from database" + $scope.reviewObject.clientID);
+                    console.log(response.data);
+                    if(response.data[0].customerID != $scope.clientIDSelected ){
+                        console.log("Customer Not Match, Skipping");
+    
+                    }else{
+                        $scope.customerSelected = response.data[0];
+                        console.log("Customer selected 2");
+                    console.log($scope.customerSelected);
+                    }
+                   
+                });
             });
-
-            $http.get("../api/customers/getCustomer.php", {
-                params: { customerID: $scope.clientIDSelected }
-            }).then(function (response) {
-                // console.log("Get customer selected from database" + $scope.reviewObject.clientID);
-                console.log(response.data);
-                if(response.data[0].customerID != $scope.clientIDSelected ){
-                    console.log("Customer Not Match, Skipping");
-
-                }else{
-                    $scope.customerSelected = response.data[0];
-                    console.log("Customer selected 2");
-                console.log($scope.customerSelected);
-                }
-               
-            });
+            console.log($scope.clientIDSelected);
+          
             $http.get("../api/planReview/getPlanReview.php", {
                 params: { planToReviewID: $rootScope.planIDFromHome }
             })
