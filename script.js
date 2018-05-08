@@ -14,7 +14,7 @@ allowCrossDomain = function (req, res, next) {
 // return $window._;
 // }]);
 
-var app = angular.module("plan360", ['ngRoute', 'ngCookies', 'ui.bootstrap', 'ui.bootstrap.datetimepicker', 'datetime', 'ui.grid', 'ui.grid.edit', 'ui.grid.resizeColumns', 'ui.calendar', 'pageslide-directive', 'gm', 'ngFileUpload','xeditable','ngQuill','textAngular','cp.ngConfirm','hl.sticky','ngTable']).
+var app = angular.module("plan360", ['ngRoute', 'ngCookies', 'ui.bootstrap', 'ui.bootstrap.datetimepicker', 'datetime', 'ui.grid', 'ui.grid.edit', 'ui.grid.resizeColumns', 'ui.calendar', 'pageslide-directive', 'gm', 'ngFileUpload','xeditable','ngQuill','textAngular','cp.ngConfirm','hl.sticky','ngTable','angular.filter']).
   config(['$routeProvider', '$locationProvider', '$httpProvider' , function ($routeProvider, $locationProvider, $httpProvider) {
 
     $routeProvider.when('/inputPlan',

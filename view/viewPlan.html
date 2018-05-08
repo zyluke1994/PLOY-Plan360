@@ -377,7 +377,7 @@
                                         </li>
                                         <li>
                                                 <button class="btn btn-link" type="button" ng-disabled="reviewNotApproved" ng-click="getSharableCode(planSelected, customerSelected)">
-                                                    <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Get Shareable Code</button>
+                                                    <span class="glyphicon glyphicon-link" aria-hidden="true"></span> Get Shareable Code</button>
                                             </li>
 
                                         <li role="separator" class="divider"></li>
@@ -1049,53 +1049,61 @@
 
                                     <div class="row">
 
-                                        <div class="col-md-3">
-                                            <label>Name</label> {{attraction.attractionName}}
+                                        <div class="col-md-8">
+                                            <label>Name</label> <p>{{attraction.attractionName}}</p>
                                         </div>
-                                        <div class="col-md-3">
-                                            <label>Category</label> {{attraction.category}}
-                                        </div>
-
                                         <div class="col-md-4">
-                                            <label>Address</label> {{attraction.address}}
+                                            <label>Category</label> <p>{{attraction.category}}</p>
                                         </div>
-                                        <div class="col-md-2">
-                                            <label>Phone</label> {{attraction.phone}}
+                                    </div>
+                                        <div class="row">
+
+                                        <div class="col-md-8">
+                                            <label>Address</label> <p>{{attraction.address}}</p>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>Phone</label> <p>{{attraction.phone}}</p>
                                         </div>
 
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-3">
-                                            <label>Hours</label> {{attraction.hours}}
-                                        </div>
-                                        <div class="col-md-3">
-                                            <label>Ticket</label> {{attraction.ticketInfo}}
+                                        <div class="col-md-8">
+                                            <label>Hours</label> <p>{{attraction.hours}}</p>
                                         </div>
                                         <div class="col-md-4">
+                                            <label>Ticket</label> <p>{{attraction.ticketInfo}}</p>
+                                        </div>
+                                    </div>
+                                        <div class="row">
+
+                                        <div class="col-md-12">
                                             <label>Website</label>
-                                            <a href="{{attraction.website}}">{{attraction.website}}</a>
+                                            <a href="{{attraction.website}}"><p>{{attraction.website}}</p></a>
                                         </div>
-                                        <div class="col-md-2">
-                                            <label>Reservation</label> {{attraction.reservationNeeded}}
-                                        </div>
+                                       
                                     </div>
 
                                     <div class="row">
-                                        <div class="col-md-3">
-                                            <label>Parking</label> {{attraction.parkingInfo}}
+                                            <div class="col-md-6">
+                                                    <label>Reservation</label><p>{{attraction.reservationNeeded}}</p>
+                                                </div>
+                                        <div class="col-md-6">
+                                            <label>Parking</label> <p>{{attraction.parkingInfo}}</p>
                                         </div>
-                                        <div class="col-md-3">
-                                            <label>Public Transit</label> {{attraction.publicTransport}}
-                                        </div>
-
-                                        <div class="col-md-4">
-                                            <label>GPS</label> {{attraction.GPSCoordinates}}
-                                        </div>
-                                        <div class="col-md-2">
-                                            <label>Time To Travel</label> {{attraction.timeToTravel}}
-                                        </div>
-
                                     </div>
+                                        <div class="row">
+
+                                        <div class="col-md-6">
+                                            <label>Public Transit</label><p>{{attraction.publicTransport}}</p>
+                                        </div>
+                                        <div class="col-md-6">
+                                                <label>GPS</label> <p>{{attraction.GPSCoordinates}}</p>
+                                            </div>
+                                    </div>
+
+                                       
+                                       
+
                                     <hr>
                                     <div class="row">
 
