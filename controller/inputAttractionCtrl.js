@@ -1,4 +1,4 @@
-app.controller('inputAttractionCtrl', function ($scope, $http, $compile, $rootScope, $sce,$ngConfirm) {
+app.controller('inputAttractionCtrl', function ($scope, $http, $compile, $rootScope, $sce, $ngConfirm) {
     $("select.image-picker").imagepicker();
 
     console.log('inside inputAttractionCtrl');
@@ -237,65 +237,106 @@ app.controller('inputAttractionCtrl', function ($scope, $http, $compile, $rootSc
             $scope.hours = "";
         }
         $scope.publicTrans = place.url;
-        $scope.notes = "Google PlaceID:" + place.place_id;
         $scope.recommend = place.rating;
         $scope.inputBy = userLogin;
-
+        $scope.fourSquareSearchResult = $scope.findFoursquare($scope.attractionName, $scope.GPS);
+        // console.log(  $scope.fourSquareSearchResult);
+        // $scope.fourSqaureSearchResultID = $scope.fourSquareSearchResult.response.venues[0].id;
+        // $scope.fourSqaureSearchResultName = $scope.fourSquareSearchResult.response.venues[0].name;
+        $scope.notes = "Google PlaceID: " + place.place_id;
 
         $scope.loadingHide = true;
 
 
         $scope.$apply();
     });
+    $scope.findFoursquare = function (name, location) {
+        var clientID = "O2TETJE1W3AFQPTVVPCGS2BJCBPVW4BK1GCNETKMNEF0FUEJ";
+        var clientSecret = "BPU3PG0GQBBKDA3MMEHA2BHJ3GLSWSYLPCXATDAOYSALZ1RP";
+        var url = "https://api.foursquare.com/v2/venues/search?query=" + name + "&near=" + location + "&client_id=" + clientID + "&client_secret=" + clientSecret + "&v=20180509";
+        $.getJSON(url, function (data) {
+            //data is the JSON string
+            console.log(data);
+            $scope.notes = $scope.notes + "\n" + "Foursquare ID: " + data.response.venues[0].id + "\n" + "Foursquare Name: " + data.response.venues[0].name;
+            var venueURL = "https://api.foursquare.com/v2/venues/"+data.response.venues[0].id+"?client_id=" + clientID+ "&client_secret=" + clientSecret + "&v=20180509";
 
+            $.getJSON(venueURL, function (data) {
+                console.log(data);
+                $scope.photoURL1 = data.response.venue.bestPhoto.prefix+"original"+data.response.venue.bestPhoto.suffix;
+                $scope.details = data.response.venue.description;
+
+            });
+        });
+        //return toReturn;
+
+
+        // $http.get("https://api.foursquare.com/v2/venues/search", {
+        //     params: {
+        //       query: name,
+        //       near:location,
+        //       client_id:clientID,
+        //       client_secret:clientSecret,
+        //       v:"20180509"
+
+        //     },
+        //     headers: {
+        //         'Content-Type': 'application/json', /*or whatever type is relevant */
+        //         'Accept': 'application/json' /* ditto */
+        //     }
+        //   })
+        //     .then(function (response) {
+        //         console.log(response);
+
+        //     });
+    }
 
     $scope.insertAttraction = function () {
 
-        
+
         $ngConfirm({
-                    title: 'Confirm',
-                    content: "Confirm to insert?",
-                    type: 'orange',
-                    typeAnimated: true,
-                    buttons: {
-                        tryAgain: {
-                            text: 'Save',
-                            btnClass: 'btn-orange',
-                            action: function(){
-                                $http.post(
-                                    "../api/attractions/insertAttraction.php", {
-                                        'attractionName': $scope.attractionName,
-                                        'country': $scope.country,
-                                        'state': $scope.state,
-                                        'city': $scope.city,
-                                        'gps': $scope.GPS,
-                                        'category': $scope.category,
-                                        'duration': $scope.duration,
-                                        'address': $scope.addressIn,
-                                        'phone': $scope.phone,
-                                        'website': $scope.website,
-                                        'ticket': $scope.ticket,
-                                        'parking': $scope.parking,
-                                        'publicTrans': $scope.publicTrans,
-                                        'hours': $scope.hours,
-                                        'details': $scope.details,
-                                        'notes': $scope.notes,
-                                        'photoURL1': $scope.photoURL1,
-                                        'photoURL2': $scope.photoURL2,
-                                        'recommend': $scope.recommend,
-                                        'reservation': $scope.reservation,
-                                        'updatedBy': userLogin,
-                                    }
-                                ).then(function (response) {
-                                    console.log("Data Inserted");
-                                    clearTable();
-                                })
+            title: 'Confirm',
+            content: "Confirm to insert?",
+            type: 'orange',
+            typeAnimated: true,
+            buttons: {
+                tryAgain: {
+                    text: 'Save',
+                    btnClass: 'btn-orange',
+                    action: function () {
+                        $http.post(
+                            "../api/attractions/insertAttraction.php", {
+                                'attractionName': $scope.attractionName,
+                                'country': $scope.country,
+                                'state': $scope.state,
+                                'city': $scope.city,
+                                'gps': $scope.GPS,
+                                'category': $scope.category,
+                                'duration': $scope.duration,
+                                'address': $scope.addressIn,
+                                'phone': $scope.phone,
+                                'website': $scope.website,
+                                'ticket': $scope.ticket,
+                                'parking': $scope.parking,
+                                'publicTrans': $scope.publicTrans,
+                                'hours': $scope.hours,
+                                'details': $scope.details,
+                                'notes': $scope.notes,
+                                'photoURL1': $scope.photoURL1,
+                                'photoURL2': $scope.photoURL2,
+                                'recommend': $scope.recommend,
+                                'reservation': $scope.reservation,
+                                'updatedBy': userLogin,
                             }
-                        },
-                        close: function () {
-                        }
+                        ).then(function (response) {
+                            console.log("Data Inserted");
+                            clearTable();
+                        })
                     }
-                });
+                },
+                close: function () {
+                }
+            }
+        });
     };
 
     function clearTable() {
