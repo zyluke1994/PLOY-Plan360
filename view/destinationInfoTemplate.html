@@ -23,19 +23,25 @@
                 <div class="row">
 
 
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label for="city">City</label>
                             <input type="text" ng-model="activeTemplate.destinationCity" class="form-control" id="city" name="city" autofocus>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="city">State</label>
+                                <input type="text" ng-model="activeTemplate.destinationState" class="form-control" id="state" name="state">
+                            </div>
+                        </div>
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label for="country">Country</label>
                             <input type="text" ng-model="activeTemplate.destinationCountry" class="form-control" class="form-control" id="country" name="country">
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label for="version">Version</label>
                             <input type="text" ng-model="activeTemplate.version" class="form-control" class="form-control" id="version" name="version">
@@ -50,7 +56,7 @@
                   
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="aboutDestination">About {{activeTemplate.destinationCity}},{{activeTemplate.destinationCountry}}</label>
+                            <label for="aboutDestination">About {{activeTemplate.destinationCity}},{{activeTemplate.destinationState}},{{activeTemplate.destinationCountry}}</label>
                             <textarea type="text" ng-model="activeTemplate.aboutDestination" class="form-control" id="aboutDestination" placeholder=""
                                 name="aboutDestination" rows="5"></textarea>
                         </div>
@@ -65,11 +71,16 @@
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label for="weather">Weather</label>
                             <textarea type="text" ng-model="activeTemplate.weather" class="form-control" id="weather" placeholder="" name="weather"
                                 rows="5"></textarea>
-                        </div>
+                        </div> -->
+                        <div class="form-group">
+                                <label for="border">Visa</label>
+                                <textarea type="text" ng-model="activeTemplate.borderSecurity" class="form-control" id="Border" placeholder="" name="Border"
+                                    rows="5"></textarea>
+                            </div>
                        
                     </div>
                     <div class="col-md-6">
@@ -115,11 +126,16 @@
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label for="language">Language</label>
                             <textarea type="text" ng-model="activeTemplate.language" class="form-control" id="language" placeholder="" name="language"
                                 rows="5"></textarea>
-                        </div>
+                        </div> -->
+                        <div class="form-group">
+                                <label for="airport">Airport</label>
+                                <textarea type="text" ng-model="activeTemplate.airport" class="form-control" id="airport" placeholder=""
+                                    name="airport" rows="5"></textarea>
+                            </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
@@ -175,18 +191,20 @@
                     </div>  -->
                     <div class="row">
                             <div class="col-md-6">
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                     <label for="culture">Culture</label>
                                     <textarea type="text" ng-model="activeTemplate.culture" class="form-control" id="culture" placeholder="" name="culture"
                                         rows="5"></textarea>
-                                </div>
+                                </div> -->
+                                
                             </div>
                             <div class="col-md-6">
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                     <label for="religion">Religion</label>
                                     <textarea type="text" ng-model="activeTemplate.religion" class="form-control" id="religion" placeholder=""
                                         name="religion" rows="5"></textarea>
-                                </div>
+                                </div> -->
+                               
                             </div>
                         </div>
                         <!-- <div class="row">

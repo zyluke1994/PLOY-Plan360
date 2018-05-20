@@ -43,6 +43,7 @@ if(count($data)>0){
     $safety = mysqli_real_escape_string($connect, $data->safety);
     $driving = mysqli_real_escape_string($connect, $data->driving);
     $locals= mysqli_real_escape_string($connect, $data->locals);
+    $airport= mysqli_real_escape_string($connect, $data->airport);
     $usefulPhone= mysqli_real_escape_string($connect, $data->usefulPhone);
     $others= mysqli_real_escape_string($connect, $data->others);
     $suggestions= mysqli_real_escape_string($connect, $data->suggestions);
@@ -75,6 +76,7 @@ if($updateType == "updateDestinationInfo"){
      safety ='$safety', 
      driving ='$driving',
      locals ='$locals', 
+     airport ='$airport', 
      usefulPhone ='$usefulPhone', 
      others ='$others', 
      suggestions ='$suggestions'

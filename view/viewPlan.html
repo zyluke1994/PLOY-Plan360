@@ -207,7 +207,7 @@
                                             <!-- <h4>Import From Template</h4> -->
                                             <div class="input-group">
                                                 <input ng-blur="importTemplate(templateSelected)" type="text" id="importTemplate" name="importTemplate" ng-model="templateSelected"
-                                                    ng-value="template" uib-typeahead="template as template.destinationCountry + ' (' + template.destinationCity + ')' for template in templateList | filter:$viewValue | limitTo:8"
+                                                    ng-value="template" uib-typeahead="template as template.destinationCountry + ' (' +template.destinationState +', '+ template.destinationCity + ')' for template in templateList | filter:$viewValue | limitTo:8"
                                                     class="form-control" placeholder="Import From Template" autofocus>
                                                 <div class="input-group-btn">
                                                     <button class="btn btn-default" ng-click="importTemplate(templateSelected)" type="button">
@@ -469,12 +469,12 @@
                                 <pre class="pre-tag-destination">{{ planSelected.aboutDestination || 'no description' }}</pre>
                             </a>
                             <ul class="list-group">
-                                <li class="list-group-item">
+                                <!-- <li class="list-group-item">
                                     <h5>Weather</h5>
                                     <a href="#" editable-textarea="planSelected.weather" onaftersave="updatePlan(planSelected,destinationInfo)" e-rows="10" e-cols="60">
                                         <pre class="pre-tag-destination">{{ planSelected.weather || 'no description' }}</pre>
                                     </a>
-                                </li>
+                                </li> -->
                                 <!-- <li class="list-group-item">
                                         <h5>Dressing</h5>
         
@@ -514,14 +514,14 @@
                                         <pre class="pre-tag-destination">{{ planSelected.timeZone || 'no description' }}</pre>
                                     </a>
                                 </li>
-                                <li class="list-group-item">
+                                <!-- <li class="list-group-item">
                                     <h5>Language</h5>
 
                                     <a href="#" editable-textarea="planSelected.language" onaftersave="updatePlan(planSelected,destinationInfo)" e-rows="10"
                                         e-cols="60">
                                         <pre class="pre-tag-destination">{{ planSelected.language || 'no description' }}</pre>
                                     </a>
-                                </li>
+                                </li> -->
                                 <li class="list-group-item">
                                     <h5>Transportation</h5>
 
@@ -591,7 +591,7 @@
                                             <pre class="pre-tag-destination">{{ planSelected.publicAreas || 'no description' }}</pre>
                                         </a>
                                     </li> -->
-                                <li class="list-group-item">
+                                <!-- <li class="list-group-item">
                                     <h5>Culture</h5>
 
                                     <a href="#" editable-textarea="planSelected.culture" onaftersave="updatePlan(planSelected,destinationInfo)" e-rows="10" e-cols="60">
@@ -605,22 +605,30 @@
                                         e-cols="60">
                                         <pre class="pre-tag-destination">{{ planSelected.religion || 'no description' }}</pre>
                                     </a>
-                                </li>
-                                <!-- <li class="list-group-item">
-                                        <h5>Border Security</h5>
+                                </li> -->
+                                <li class="list-group-item">
+                                        <h5>Visa</h5>
         
                                         <a href="#" editable-textarea="planSelected.borderSecurity" onaftersave="updatePlan(planSelected,destinationInfo)" e-rows="10"
                                             e-cols="100">
                                             <pre class="pre-tag-destination">{{ planSelected.borderSecurity || 'no description' }}</pre>
                                         </a>
-                                    </li> -->
-                                <li class="list-group-item">
+                                    </li>
+                                    <li class="list-group-item">
+                                            <h5>Airport</h5>
+        
+                                            <a href="#" editable-textarea="planSelected.airport" onaftersave="updatePlan(planSelected,destinationInfo)" e-rows="10"
+                                                e-cols="60">
+                                                <pre class="pre-tag-destination">{{ planSelected.airport || 'no description' }}</pre>
+                                            </a>
+                                        </li>
+                                <!-- <li class="list-group-item">
                                         <h5>Safety</h5>
         
                                         <a href="#" editable-textarea="planSelected.safety" onaftersave="updatePlan(planSelected,destinationInfo)" e-rows="10" e-cols="100">
                                             <pre class="pre-tag-destination">{{ planSelected.safety || 'no description' }}</pre>
                                         </a>
-                                    </li>
+                                    </li> -->
                                 <li class="list-group-item">
                                     <h5>Driving</h5>
 

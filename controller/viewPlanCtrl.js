@@ -277,6 +277,7 @@ app.controller('viewPlanCtrl', function ($scope, $http, $rootScope, $uibModal, $
         culture: 'Culture',
         religion: 'Religion',
         borderSecurity: 'Border Security',
+        airport: 'Airport',
         safety: 'Safety',
         driving: 'Driving',
         locals: 'Locals',
@@ -306,6 +307,7 @@ app.controller('viewPlanCtrl', function ($scope, $http, $rootScope, $uibModal, $
 
         // $scope.planSelected = templateSelected;
         console.log($scope.planSelected);
+        console.log(templateSelected);
 
 
     }
@@ -354,6 +356,7 @@ app.controller('viewPlanCtrl', function ($scope, $http, $rootScope, $uibModal, $
                 'religion': $scope.planSelected.religion,
                 'borderSecurity': $scope.planSelected.borderSecurity,
                 'safety': $scope.planSelected.safety,
+                'airport': $scope.planSelected.airport,
                 'driving': $scope.planSelected.driving,
                 'locals': $scope.planSelected.locals,
                 'usefulPhone': $scope.planSelected.usefulPhone,

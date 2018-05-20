@@ -103,6 +103,7 @@ app.controller('destinationInfoTemplateCtrl', ['$scope', '$http', '$compile', '$
                             "../api/destinationPlanInfoTemplate/updateTemplate.php", {
                                 'templateID': templateID,
                                 'destinationCity': $scope.activeTemplate.destinationCity,
+                                'destinationState': $scope.activeTemplate.destinationState,
                                 'destinationCountry': $scope.activeTemplate.destinationCountry,
                                 'version': $scope.activeTemplate.version,
                                 'briefing': $scope.activeTemplate.briefing,
@@ -118,6 +119,7 @@ app.controller('destinationInfoTemplateCtrl', ['$scope', '$http', '$compile', '$
                                 'transportation': $scope.activeTemplate.transportation,
                                 'telecommunication': $scope.activeTemplate.telecommunication,
                                 'hotel': $scope.activeTemplate.hotel,
+                                'airport': $scope.activeTemplate.airport,
                                 'shopping': $scope.activeTemplate.shopping,
                                 'electricity': $scope.activeTemplate.electricity,
                                 'drinkingWater': $scope.activeTemplate.drinkingWater,
@@ -165,6 +167,7 @@ app.controller('destinationInfoTemplateCtrl', ['$scope', '$http', '$compile', '$
         $http.post(
             "../api/destinationPlanInfoTemplate/insertTemplate.php", {
                 'destinationCity': $scope.activeTemplate.destinationCity,
+                'destinationState': $scope.activeTemplate.destinationState,
                 'destinationCountry': $scope.activeTemplate.destinationCountry,
                 'version': $scope.activeTemplate.version,
                 'briefing': $scope.activeTemplate.briefing,
@@ -177,6 +180,7 @@ app.controller('destinationInfoTemplateCtrl', ['$scope', '$http', '$compile', '$
                 'medical': $scope.activeTemplate.medical,
                 'timeZone': $scope.activeTemplate.timeZone,
                 'language': $scope.activeTemplate.language,
+                'airport': $scope.activeTemplate.airport,
                 'transportation': $scope.activeTemplate.transportation,
                 'telecommunication': $scope.activeTemplate.telecommunication,
                 'hotel': $scope.activeTemplate.hotel,

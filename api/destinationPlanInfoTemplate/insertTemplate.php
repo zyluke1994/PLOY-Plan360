@@ -6,6 +6,7 @@ $data = json_decode(file_get_contents("php://input"));
 
 if(count($data)>0){
     $destinationCity = mysqli_real_escape_string($connect, $data->destinationCity);
+    $destinationState = mysqli_real_escape_string($connect, $data->destinationState);
     $destinationCountry = mysqli_real_escape_string($connect, $data->destinationCountry);
     $updatedBy= mysqli_real_escape_string($connect, $data->updatedBy);
     $version= mysqli_real_escape_string($connect, $data->version);
@@ -34,13 +35,15 @@ if(count($data)>0){
     $safety = mysqli_real_escape_string($connect, $data->safety);
     $driving = mysqli_real_escape_string($connect, $data->driving);
     $locals= mysqli_real_escape_string($connect, $data->locals);
+    $airport= mysqli_real_escape_string($connect, $data->airport);
     $usefulPhone= mysqli_real_escape_string($connect, $data->usefulPhone);
+
     $others= mysqli_real_escape_string($connect, $data->others);
     $suggestions= mysqli_real_escape_string($connect, $data->suggestions);
     
 
-    $query = "INSERT INTO destinationPlanInfoTemplate_ploy (destinationCity, destinationCountry, updatedBy, version,briefing,packing,weather, aboutDestination,dressing, payments, electronics, medical,timeZone,language,transportation, telecommunication,hotel, shopping, electricity,drinkingWater,dining,tips, publicAreas,culture, religion, borderSecurity, safety,driving,locals,usefulPhone, others,suggestions) 
-     VALUES ('$destinationCity','$destinationCountry','$updatedBy','$version','$briefing','$packing','$weather','$aboutDestination','$dressing','$payments','$electronics','$medical','$timeZone','$language','$transportation','$telecommunication','$hotel','$shopping','$electricity','$drinkingWater','$dining','$tips','$publicAreas','$culture','$religion','$borderSecurity','$safety','$driving','$locals','$usefulPhone','$others','$suggestions')";
+    $query = "INSERT INTO destinationPlanInfoTemplate_ploy (destinationCity, destinationState,destinationCountry, updatedBy, version,briefing,packing,weather, aboutDestination,dressing, payments, electronics, medical,timeZone,language,transportation, telecommunication,airport,hotel, shopping, electricity,drinkingWater,dining,tips, publicAreas,culture, religion, borderSecurity, safety,driving,locals,usefulPhone, others,suggestions) 
+     VALUES ('$destinationCity','$destinationState','$destinationCountry','$updatedBy','$version','$briefing','$packing','$weather','$aboutDestination','$dressing','$payments','$electronics','$medical','$timeZone','$language','$transportation','$telecommunication','$airport','$hotel','$shopping','$electricity','$drinkingWater','$dining','$tips','$publicAreas','$culture','$religion','$borderSecurity','$safety','$driving','$locals','$usefulPhone','$others','$suggestions')";
     if(mysqli_query($connect,$query)){
         echo "Data Inserted...";
     }
