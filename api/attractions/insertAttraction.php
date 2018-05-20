@@ -28,13 +28,15 @@ if(count($data)>0){
     $recommend= mysqli_real_escape_string($connect, $data->recommend);
     $reservation= mysqli_real_escape_string($connect, $data->reservation);
     $updatedBy= mysqli_real_escape_string($connect, $data->updatedBy);
+    $google_places_id= mysqli_real_escape_string($connect, $data->google_places_id);
+    $foursquare_places_id= mysqli_real_escape_string($connect, $data->foursquare_places_id);
 
 
     $query = "INSERT INTO attractions_ploy (attractionName, country, state, city,
      GPSCoordinates, category, durationSuggest, address, phone, website, ticketInfo, parkingInfo, publicTransport,
-     hours, description, notes, picture1URL, picture2URL, recommendRating, reservationNeeded,updatedBy) 
+     hours, description, notes, picture1URL, picture2URL, recommendRating, reservationNeeded,updatedBy,google_places_id,foursquare_places_id) 
      VALUES ('$attractionName', '$country','$state','$city','$GPS','$category','$duration','$address','$phone','$website','$ticket',
-     '$parking','$publicTrans','$hours','$details','$notes','$photoURL1','$photoURL2','$recommend','$reservation','$updatedBy')";
+     '$parking','$publicTrans','$hours','$details','$notes','$photoURL1','$photoURL2','$recommend','$reservation','$updatedBy','$google_places_id','$foursquare_places_id')";
     if(mysqli_query($connect,$query)){
         echo "Data Inserted...";
     }

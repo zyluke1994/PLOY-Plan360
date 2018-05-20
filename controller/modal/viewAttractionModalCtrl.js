@@ -51,6 +51,8 @@ app.controller('viewAttractionModalInstanceCtrl', function ($uibModalInstance, a
                                         'recommend': attraction.recommendRating,
                                         'reservation': attraction.reservationNeeded,
                                         'attractionID': attraction.attractionID,
+                                        'google_places_id': attraction.google_places_id,
+                                        'foursquare_places_id': attraction.foursquare_places_id,
                                     }
                                 ).then(function (response) {
                                     console.log("Data Updated");

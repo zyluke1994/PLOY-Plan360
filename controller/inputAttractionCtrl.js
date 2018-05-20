@@ -36,6 +36,10 @@ app.controller('inputAttractionCtrl', function ($scope, $http, $compile, $rootSc
 
     }
     $scope.getAttractionFromWiki = function (val) {
+    //    var url = 'https://en.wikipedia.org/w/api.php?action=opensearch&search='+val+'&limit=500';
+    //      $.getJSON(url,function(data){
+    //         console.log(data);
+    //      })
 
         $http.get('https://en.wikipedia.org/w/api.php', {
             params: {
@@ -223,6 +227,7 @@ app.controller('inputAttractionCtrl', function ($scope, $http, $compile, $rootSc
         $scope.city = cityDecode;
         $scope.country = countryDecode;
 
+        console.log(place.photos[2].getUrl({'maxWidth':1200,'maxHeight':1200}));
 
         $scope.GPS = place.geometry.location.lat() + ', ' + place.geometry.location.lng();
         $scope.phone = place.international_phone_number;
@@ -243,27 +248,37 @@ app.controller('inputAttractionCtrl', function ($scope, $http, $compile, $rootSc
         // console.log(  $scope.fourSquareSearchResult);
         // $scope.fourSqaureSearchResultID = $scope.fourSquareSearchResult.response.venues[0].id;
         // $scope.fourSqaureSearchResultName = $scope.fourSquareSearchResult.response.venues[0].name;
-        $scope.notes = "Google PlaceID: " + place.place_id;
-
+        // $scope.notes = "Google PlaceID: " + place.place_id;
+        $scope.notes ="";
+        $scope.google_places_id =  place.place_id;
         $scope.loadingHide = true;
 
 
         $scope.$apply();
     });
     $scope.findFoursquare = function (name, location) {
-        var clientID = "O2TETJE1W3AFQPTVVPCGS2BJCBPVW4BK1GCNETKMNEF0FUEJ";
-        var clientSecret = "BPU3PG0GQBBKDA3MMEHA2BHJ3GLSWSYLPCXATDAOYSALZ1RP";
+        var clientID = "UH1WFIC4M1Q54IP4IVABLB2XEYLN3RAT22R2LACGC0BW3ZY5";
+        var clientSecret = "2WR05QUPAZVZQPQERNX4DWZZ44GMZR2T2XNDDSE24D4DDWLX";
         var url = "https://api.foursquare.com/v2/venues/search?query=" + name + "&near=" + location + "&client_id=" + clientID + "&client_secret=" + clientSecret + "&v=20180509";
         $.getJSON(url, function (data) {
             //data is the JSON string
             console.log(data);
-            $scope.notes = $scope.notes + "\n" + "Foursquare ID: " + data.response.venues[0].id + "\n" + "Foursquare Name: " + data.response.venues[0].name;
+            // $scope.notes = $scope.notes + "\n" + "Foursquare ID: " + data.response.venues[0].id + "\n" + "Foursquare Name: " + data.response.venues[0].name;
             var venueURL = "https://api.foursquare.com/v2/venues/"+data.response.venues[0].id+"?client_id=" + clientID+ "&client_secret=" + clientSecret + "&v=20180509";
-
+            $scope.foursquare_places_id = data.response.venues[0].id;
             $.getJSON(venueURL, function (data) {
                 console.log(data);
-                $scope.photoURL1 = data.response.venue.bestPhoto.prefix+"original"+data.response.venue.bestPhoto.suffix;
+                $scope.photoURL1 = data.response.venue.photos.groups[0].items[0].prefix+"original"+data.response.venue.photos.groups[0].items[0].suffix;
+                $scope.photoURL2 = data.response.venue.photos.groups[0].items[1].prefix+"original"+data.response.venue.photos.groups[0].items[1].suffix;
+
                 $scope.details = data.response.venue.description;
+                if(!$scope.website){
+                    $scope.website = data.response.venue.url;
+                }
+                if(!$scope.phone){
+                    $scope.phone = data.response.venue.contact.formattedPhone;
+
+                }
 
             });
         });
@@ -325,6 +340,9 @@ app.controller('inputAttractionCtrl', function ($scope, $http, $compile, $rootSc
                                 'photoURL2': $scope.photoURL2,
                                 'recommend': $scope.recommend,
                                 'reservation': $scope.reservation,
+                                'google_places_id': $scope.google_places_id,
+                                'foursquare_places_id': $scope.foursquare_places_id,
+
                                 'updatedBy': userLogin,
                             }
                         ).then(function (response) {
@@ -359,7 +377,8 @@ app.controller('inputAttractionCtrl', function ($scope, $http, $compile, $rootSc
         $scope.photoURL2 = "";
         $scope.recommend = "";
         $scope.reservation = "";
-
+        $scope.google_places_id ="";
+        $scope.foursquare_places_id = "";
 
     }
 

@@ -28,11 +28,13 @@ if(count($data)>0){
     $recommend= mysqli_real_escape_string($connect, $data->recommend);
     $reservation= mysqli_real_escape_string($connect, $data->reservation);
     $attractionID = mysqli_real_escape_string($connect, $data->attractionID);
+    $google_places_id= mysqli_real_escape_string($connect, $data->google_places_id);
+    $foursquare_places_id= mysqli_real_escape_string($connect, $data->foursquare_places_id);
 
     $query = "UPDATE attractions_ploy SET attractionName = '$attractionName', country = '$country', state ='$state', city ='$city',
      GPSCoordinates ='$GPS', category ='$category', durationSuggest ='$duration', address ='$address', phone='$phone', website ='$website', 
-     ticketInfo ='$ticket', parkingInfo ='$parking', publicTransport ='$publicTrans',hours ='$hours', description ='$details',
-      notes= '$notes', picture1URL ='$photoURL1', picture2URL='$photoURL2', recommendRating='$recommend', reservationNeeded ='$reservation'
+     ticketInfo ='$ticket', parkingInfo ='$parking', publicTransport ='$publicTrans', hours ='$hours', description ='$details',
+      notes= '$notes', picture1URL ='$photoURL1', picture2URL='$photoURL2', recommendRating='$recommend', reservationNeeded ='$reservation',google_places_id = '$google_places_id',foursquare_places_id='$foursquare_places_id'
       WHERE attractionID = '$attractionID'";
 
     

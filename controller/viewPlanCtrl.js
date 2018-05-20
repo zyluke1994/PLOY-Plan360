@@ -1162,6 +1162,8 @@ app.controller('viewPlanCtrl', function ($scope, $http, $rootScope, $uibModal, $
                 $scope.processByDateList.push(obj);
 
             }
+            $scope.processByDateList=_.sortBy($scope.processByDateList, function(o) { return new Date(o.dateList); });
+
         });
 
         console.log( $scope.processByDateList);

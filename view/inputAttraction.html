@@ -14,10 +14,10 @@
                             <label for="inputCountry">Country</label>
 
                             <select class="form-control" ng-model="country" id="inputCountry" name="inputCountry" autofocus required>
-                    <option value ="United States" >United States</option>
-                    <option value = "Canada">Canada</option>
-                    <option value = "Puerto Rico">Puerto Rico</option>
-                </select>
+                                <option value="United States">United States</option>
+                                <option value="Canada">Canada</option>
+                                <option value="Puerto Rico">Puerto Rico</option>
+                            </select>
                         </div>
                     </div>
                     <div class="col-md-2">
@@ -45,7 +45,10 @@
 
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="inputName"><img style="max-width:15px;" ng-src="{{attractionIcon}}"/>Attraction Name <span ng-hide="loadingHide"> ...Loading</span></label>
+                            <label for="inputName">
+                                <img style="max-width:15px;" ng-src="{{attractionIcon}}" />Attraction Name
+                                <span ng-hide="loadingHide"> ...Loading</span>
+                            </label>
                             <input type="text" gm-places-autocomplete ng-model="attractionName" class="form-control" required/>
                             <!--<a ng-click="getAttractionID(attractionSelect)"><i class="glyphicon glyphicon-search"></i></a>-->
 
@@ -60,41 +63,41 @@
 
 
                             <select class="form-control" ng-model="category" id="inputCategory" name="inputCategory" required>
-                    <option>Accommodations</option>
-                    <option>Food and Drinks</option>
-                    <option>Museums</option>
-                    <option>Outdoor Activities</option>
-                    <option>Sports</option>
-                    <option>Transportation</option>
-                    <option>Tours and Activities</option>
-                    <option>Nightlife</option>
-                    <option>Classes and Workshops</option>
-                    <option>Shopping</option>
-                    <option>Nature and Parks</option>
-                    <option>Fun and Games</option>
-                    <option>Spas and Wellness</option>
-                    <option>Theater and Concerts</option>
-                    <option>Zoos and Aquariums</option>
-                    <option>Traveler Resources</option>
-                    <option>Amusement Parks</option>
-                    <option>Boat Tours and Water</option>
-                    <option>Events</option>
-                    <option>Casino and Gambling</option>
-                    <option>Other</option>
+                                <option>Accommodations</option>
+                                <option>Food and Drinks</option>
+                                <option>Museums</option>
+                                <option>Outdoor Activities</option>
+                                <option>Sports</option>
+                                <option>Transportation</option>
+                                <option>Tours and Activities</option>
+                                <option>Nightlife</option>
+                                <option>Classes and Workshops</option>
+                                <option>Shopping</option>
+                                <option>Nature and Parks</option>
+                                <option>Fun and Games</option>
+                                <option>Spas and Wellness</option>
+                                <option>Theater and Concerts</option>
+                                <option>Zoos and Aquariums</option>
+                                <option>Traveler Resources</option>
+                                <option>Amusement Parks</option>
+                                <option>Boat Tours and Water</option>
+                                <option>Events</option>
+                                <option>Casino and Gambling</option>
+                                <option>Other</option>
 
-                  </select>
+                            </select>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="duration">Duration Suggested (Hours)</label>
                             <select class="form-control" ng-model="duration" id="duration" name="duration" required>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                  </select>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
                         </div>
 
                     </div>
@@ -102,11 +105,17 @@
 
                 </div>
                 <div class="row">
+                    <div class="col-md-12">
+
+                        Google Places ID: {{google_places_id}} | Foursquare Places ID: {{foursquare_places_id}}
+                    </div>
+                </div>
+                <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="inputAddress">Address</label>
                             <input type="text" ng-model="addressIn" class="form-control" id="inputAddress" name="inputAddress" required>
-                            
+
                         </div>
                     </div>
                     <div class="col-md-3">
@@ -161,8 +170,13 @@
                 <div class="row">
                     <div class="col-md-8">
                         <div class="form-group">
-                            <label for="inputDetails">Details</label> <a style="float:right;" ng-click="getAttractionFromWiki(attractionName)"> <span class="glyphicon glyphicon-download" aria-hidden="true"></span>
-Fetch Info & Images</a> <span class="glyphicon glyphicon-info-sign" tooltip-placement="top-left" uib-tooltip="Plugin Required for Wikipedia Data Fetch. Please download, install and enable Chrome Extension - 'Allow-Control-Allow-Origin: *'"  aria-hidden="true"></span>
+                            <label for="inputDetails">Details</label>
+                            <a style="float:right;" ng-click="getAttractionFromWiki(attractionName)">
+                                <span class="glyphicon glyphicon-download" aria-hidden="true"></span>
+                                Fetch Info & Images</a>
+                            <span class="glyphicon glyphicon-info-sign" tooltip-placement="top-left"
+                                uib-tooltip="Plugin Required for Wikipedia Data Fetch. Please download, install and enable Chrome Extension - 'Allow-Control-Allow-Origin: *'"
+                                aria-hidden="true"></span>
                             <div class=well ng-hide="wikiLinks">
                                 <strong>Choose from below:</strong>
                                 <span style="float:right;" class="glyphicon glyphicon-remove" ng-click="wikiLinks=true" aria-hidden="true"></span>
@@ -186,7 +200,7 @@ Fetch Info & Images</a> <span class="glyphicon glyphicon-info-sign" tooltip-plac
                 <div class="row">
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="inputURL1" >Photo URL 1</label>
+                            <label for="inputURL1">Photo URL 1</label>
                             <img src="{{photoURL1}}" style="float:right;max-height: 60px;">
                             <input type="text" ng-model="photoURL1" class="form-control" id="inputURL1" name="inputURL1">
                         </div>
@@ -194,7 +208,7 @@ Fetch Info & Images</a> <span class="glyphicon glyphicon-info-sign" tooltip-plac
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="inputURL2">Photo URL 2</label>
-                                                        <img src="{{photoURL2}}" style="float:right;max-height: 60px;">
+                            <img src="{{photoURL2}}" style="float:right;max-height: 60px;">
 
                             <input type="text" ng-model="photoURL2" class="form-control" id="inputURL2" name="inputURL2">
                         </div>
@@ -223,18 +237,18 @@ Fetch Info & Images</a> <span class="glyphicon glyphicon-info-sign" tooltip-plac
 
                 </div>
                 <div class="row well" ng-hide="imageSelect">
-                        <div ng-repeat=" item in attractionPhotoListFilter">
-                            <div class="col-xs-6 col-md-3">
-                                <a ng-click="insertToForm(item)" class="thumbnail">
-                                 <img src="{{item}}" alt="none" style="max-height: 160px;">
-                                 </a>
-                            </div>
-
+                    <div ng-repeat=" item in attractionPhotoListFilter">
+                        <div class="col-xs-6 col-md-3">
+                            <a ng-click="insertToForm(item)" class="thumbnail">
+                                <img src="{{item}}" alt="none" style="max-height: 160px;">
+                            </a>
                         </div>
 
-   
-</select>
-                  
+                    </div>
+
+
+                    </select>
+
                 </div>
                 <div class="row">
 
